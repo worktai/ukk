@@ -8,22 +8,22 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <title>Admin</title>
+    <title>Kasir</title>
   </head>
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="/dashboard">ADMIN</a>
+        <a class="navbar-brand">KASIR</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
+            <a class="nav-link active" aria-current="page" href="/transaksi">Transaksi</a>
         </div>
         <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="/apegawai">Log-Aktivitas-Pegawai</a>
+            <a class="nav-link active" aria-current="page" href="/menu">Menu Makanan/Minuman</a>
         </div>
         </div>
         <ul class="navbar-nav ml-auto">
