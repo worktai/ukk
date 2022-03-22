@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMenusTable extends Migration
+class CreatePenggunaHasUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateMenusTable extends Migration
      */
     public function up()
     {
-        Schema::create('menu', function (Blueprint $table) {
-            $table->id();
-            $table->integer('makanan/minuman');
-            $table->integer('jumlah');
-            $table->integer('harga');
-            $table->integer('meja');
-            $table->integer('meja');
+        Schema::create('pengguna_has_user', function (Blueprint $table) {
+            $table->integer('id_penguna');
+            $table->integer('id_user');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ class CreateMenusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menu');
+        Schema::dropIfExists('pengguna_has_user');
     }
 }

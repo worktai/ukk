@@ -43,13 +43,13 @@ class LoginController extends Controller
     {
 
         if($user->hasRole('admin')) {
-            return redirect()->route('dashboard');
+            return redirect()->route('utama');
         }
 
         else if($user->hasRole('kasir')) {
             return redirect()->route('transaksi');
         }
 
-        return redirect()->route('home');
+        return redirect()->route('menu_manejer');
     }
 }

@@ -8,22 +8,25 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <title>Admin</title>
+    <title>Manejer</title>
   </head>
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="/dashboard">ADMIN</a>
+        <a class="navbar-brand">MANEJER</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="/utama">Aktivitas Pegawai</a>
+            <a class="nav-link active" aria-current="page" href="/menu_manejer">Menu</a>
         </div>
         <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="/pengguna">Pengguna/User</a>
+            <a class="nav-link active" aria-current="page" href="/catatan_transaksi">Catatan Transaksi</a>
+        </div>
+        <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="/log-aktivitas-pegawai">Log-Aktivitas Pegawai</a>
         </div>
         </div>
         <ul class="navbar-nav ml-auto">
