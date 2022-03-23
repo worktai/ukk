@@ -1,4 +1,4 @@
-@extends('manejer.nav_manejer')
+@extends('layouts.dashboard')
 @section('conten')
 
 Menu manejer makanan dan minuman

@@ -14,6 +14,7 @@ class UserSeeder extends Seeder
     {
         $admin = User::create([
             'name' => 'Admin Role',
+            'level' => 'Admin',
             'email' => 'admin@role.test',
             'password' => bcrypt('admin')
         ]);
@@ -22,6 +23,7 @@ class UserSeeder extends Seeder
 
         $manejer = User::create([
             'name' => 'Manejer Role',
+            'level' => 'manejer',
             'email' => 'manejer@role.test',
             'password' => bcrypt('manejer')
         ]);
@@ -30,6 +32,7 @@ class UserSeeder extends Seeder
 
         $kasir = User::create([
             'name' => 'Kasir Role',
+            'level' => 'kasir',
             'email' => 'kasir@role.test',
             'password' => bcrypt('kasir')
         ]);

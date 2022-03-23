@@ -1,4 +1,4 @@
-@extends('kasir.nav_kasir')
+@extends('layouts.dashboard')
 @section('conten')
 
 INI Kasir
