@@ -40,9 +40,9 @@ Route::get('/menu', function () {
 // HALAMAN MANEJER
 Route::middleware('role:manejer')->get('/menu_manejer', 'MenuController@index')->name('menu_manejer');
 
-Route::middleware('role:manejer')->get('menu/index', 'MenuController@index')->name('index');
-Route::middleware('role:manejer')->post('/menu/create', 'MenuController@create')->name('create');
-Route::middleware('role:manejer')->post('/menu/store', 'MenuController@store')->name('store');
+Route::middleware('role:manejer')->get('menu_manejer/index', 'MenuController@index')->name('andex');
+Route::middleware('role:manejer')->post('/menu_manejer/store', 'MenuController@store')->name('store');
+Route::middleware('role:admin')->get('menu_manejer/{id}/edit', 'MenuControllerController@edit')->name('menu.edit');
 
 
 

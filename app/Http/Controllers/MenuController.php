@@ -3,54 +3,62 @@
 namespace App\Http\Controllers;
 use App\Models\transaksi;
 use App\Models\user;
+use App\menu;
 use DB;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 
 class MenuController extends Controller
 {
     public function index()
     {
-        $menu = DB::table('menu')
-        ->leftJoin('menu_has_user', 'menu.id_menu', '=', 'menu_has_user.id_menu')
-        ->leftJoin('users','menu_has_user.id_user', '=', 'users.id')
-        ->select('users.name','menu.*')
-        ->get();
+        $menu = DB::table('menu')->paginate(5);
+        // ->leftJoin('menu_has_user', 'menu.id_menu', '=', 'menu_has_user.id_menu')
+        // ->leftJoin('users','menu_has_user.id_user', '=', 'users.id')
+        // ->select('users.name','menu.*')
+
+
+
 
         return view('manejer/menu_manejer',['menu' => $menu]);
     }
 
-    public function create()
-    {
-        return view('manejer/menu_manejer');
-    }
-
     public function store(Request $request)
     {
-        $request->validate([
-            'nama'=>'required',
-            'kategori'=>'required',
-            'harga'=>'required',
-            'image'=>'required',
-        ]);
-        // dd($request);
+        $data=Menu::create($request->all());
 
-        $image = $request->file('image');
-        $nameImage = $request->file('image')->getClientOriginalName();
-        $thumbImage = image::make($image->getRealPath())->resize(85, 85);
-        $thumbPath = public_path() . '/imagemenu/' . $nameImage;
-        $thumbImage = Image::make($thumbImage)->save($thumbPath);
-        //  dd($request,$image);
-        return menu::create([
-            'nama'=> $request['nama'],
-            'kategori'=>$request['kategori'],
-            'harga'=>$request['harga'],
-           'image'=>$request['image'],
-            'created_at' => date("Y-m-d H:i:s"),
-           'updated_at' => date("Y-m-d H:i:s")
-        ]);
+        if($request->hasFile('image')){
+            $request->file('image')->move('fotohotel/', $request->file('image')->getClientOriginalName());
+            $data->image = $request->file('image')->getClientOriginalName();
+            $data->save();
+     
+        }
+        // if ($files = $request->file('image')) {
+        //     $destinationPath = 'public/image/'; // upload path
+        //     $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+        //     $files->move($destinationPath, $profileImage);
+        //     $insert['image'] = "$profileImage";
+        //     }
+       
+        // menu::create([
+        //     'nama'=> $request['nama'],
+        //     'kategori'=>$request['kategori'],
+        //     'harga'=>$request['harga'],
+        //     'image'=>$request['image'],
+        //     'created_at' => date("Y-m-d H:i:s"),
+        //     'updated_at' => date("Y-m-d H:i:s") 
+           
+        // ]); 
       
-        return redirect()->route('menu_manejer')->with('success','Data Berhasil di Input');
+        return redirect()->route('menu_manejer');
     }
+
+    public function edit($id_menu)
+    {
+        $data = menu::find($id_menu);
+        return view('manejer/editmenu');
+    }
+
 }

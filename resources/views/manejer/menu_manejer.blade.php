@@ -21,12 +21,15 @@
                     <td>{{ $m->nama }}</td>
                     <td>{{ $m->kategori }}</td>
                     <td>{{ $m->harga}}</td>
-                    <td>{{ $m->image }}</td>
                     <td>
-                    <a href="{{ route('menu/edit',$menu->id_menu) }}" class="btn btn-primary">Edit</a>
+                    <img src="{{asset('fotohotel/'.$m->image)}}" alt="" style="width:100px";>
+                    </td>
+                    <td>
+                    <a href="{{ route('menu.edit',$m->id_menu) }}" class="btn btn-primary btn-sm">Edit</a>
                     </td>
                 @endforeach
             </table>
+            {!! $menu->links() !!}
         </div>
     </div>
 </div>
@@ -41,7 +44,7 @@
       </div>
       <div class="modal-body">
 
-        <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
