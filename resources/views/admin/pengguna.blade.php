@@ -38,7 +38,7 @@
                                 <div class="input-group mb-3">
                                     <select class="form-control" name="level" id="level">
                                         <option value="---">level</option>
-                                        <option value="manager">manager</option>
+                                        <option value="manejer">manager</option>
                                         <option value="kasir">kasir</option>
                                     </select>
                                 </div>

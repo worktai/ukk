@@ -14,7 +14,7 @@ class CreateManejersTable extends Migration
     public function up()
     {
         Schema::create('manejer', function (Blueprint $table) {
-            $table->id('id_manager');
+            $table->id('id_manejer');
             $table->string('name')->unique();
             $table->string('notlp');
              $table->string('status');

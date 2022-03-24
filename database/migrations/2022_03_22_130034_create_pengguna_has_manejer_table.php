@@ -14,8 +14,8 @@ class CreatePenggunaHasManejerTable extends Migration
     public function up()
     {
         Schema::create('pengguna_has_manejer', function (Blueprint $table) {
-            $table->integer('id_penguna');
-            $table->integer('id_manager');
+            $table->integer('id_pengguna');
+            $table->integer('id_manejer');
             $table->timestamps();
         });
     }
