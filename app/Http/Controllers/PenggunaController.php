@@ -109,13 +109,10 @@ class PenggunaController extends Controller
 
                 DB::table('pengguna_has_manejer')->insert($datasave);
 
-
             return redirect()->route('index')->with('success','Data Berhasil di Input');
 
             } elseif($request['level'] == 'kasir') {
                 $id_pengguna = DB::table('pengguna')->where('name',$request['name'])->value('id_pengguna');
-// dd($id_pengguna);
-
 
                 $inputan = [
                     'name'=> $request['name'],
@@ -132,17 +129,14 @@ class PenggunaController extends Controller
 
                 $id_kasir = DB::table('kasir')->where('level', $request['level'])->value('id_kasir');
 
-               $datasave = [
-                'id_pengguna'=>$id_pengguna,
-                'id_kasir'=>$id_kasir,
-            ];
+                $datasave = [
+                    'id_pengguna'=>$id_pengguna,
+                    'id_kasir'=>$id_kasir,
+                ];
 
+                DB::table('pengguna_has_kasir')->insert($datasave);
 
-
-
-        //     DB::table('pengguna_has_kasir')->insert($datasave);
-
-             return redirect()->route('index');
+            return redirect()->route('index');
 
 
 
@@ -176,87 +170,89 @@ class PenggunaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit( $pe)
+    public function edit($id_pengguna)
     {
+    
+        $pengguna = pengguna::find($id_pengguna);
 
-    $pengguna = DB::table('pengguna')
-    ->join('users', 'pengguna.id_pengguna', '=', 'users.id')
-    ->join('kasir','pengguna.id_pengguna','=','kasir.id_kasir')
-    ->join('manejer','pengguna.id_pengguna','=','manejer.id_manejer')
-    ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
-    ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
-    ->where('pengguna.id_pengguna', $pe)
-    ->select('pengguna.*', 'users.*','kasir.*','manejer.*','model_has_roles.model_id')
+        $pengguna = DB::table('pengguna')
+        ->join('users', 'pengguna.id_pengguna', '=', 'users.id')
+        ->join('kasir','pengguna.id_pengguna','=','kasir.id_kasir')
+        ->join('manejer','pengguna.id_pengguna','=','manejer.id_manejer')
+        ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+        ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
+        ->where('pengguna.id_pengguna',)
+        ->select('pengguna.*', 'users.*','kasir.*','manejer.*','model_has_roles.model_id')
 
-    ->get();
-     dd($pengguna);
-    return view('admin/edit', compact('pengguna'));
+        ->get();
+        // dd($pengguna);
+        return view('admin/edit', compact('pengguna'));
 
-    }
+        }
 
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name'=>'required',
-            'no_tlp'=>'required',
-            'level'=>'required',
-            'status'=>'required',
-            'email'=>'required',
-            'password' => ['required', 'string', 'min:4', 'confirmed'],
-        ]);
-        DB::table('pengguna')->where('id_pengguna', $id )->update([
-            'name' => $request->name,
-            'no_tlp' => $request->no_tlp,
-            'level' => $request->level,
-            'status' => $request->status,
-            'email' => $request->email,
-            'password' => $request->password,
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s")
-        ]);
-        DB::table('users')->where('name',$id)->update([
-            'name'=>$request->name,
-            'password'=>$request->password,
-            'email' => $request->email,
-            'level'=>$request->level,
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s")
-        ]);
+//         $request->validate([
+//             'name'=>'required',
+//             'no_tlp'=>'required',
+//             'level'=>'required',
+//             'status'=>'required',
+//             'email'=>'required',
+//             'password' => ['required', 'string', 'min:4', 'confirmed'],
+//         ]);
+//         DB::table('pengguna')->where('id_pengguna', $id )->update([
+//             'name' => $request->name,
+//             'no_tlp' => $request->no_tlp,
+//             'level' => $request->level,
+//             'status' => $request->status,
+//             'email' => $request->email,
+//             'password' => $request->password,
+//             'created_at' => date("Y-m-d H:i:s"),
+//             'updated_at' => date("Y-m-d H:i:s")
+//         ]);
+//         DB::table('users')->where('name',$id)->update([
+//             'name'=>$request->name,
+//             'password'=>$request->password,
+//             'email' => $request->email,
+//             'level'=>$request->level,
+//             'created_at' => date("Y-m-d H:i:s"),
+//             'updated_at' => date("Y-m-d H:i:s")
+//         ]);
 
-        if ($request['level']=='manejer') {
-                DB::table('manejer')->where('id_manejer',$id)->update([
-                    'name' => $request->name,
-                    'notlp' => $request->no_tlp,
-                    'level' => $request->level,
-                    'status' => $request->status,
-                    'email' => $request->email,
-                    'password' => $request->password,
-                    'created_at' => date("Y-m-d H:i:s"),
-                    'updated_at' => date("Y-m-d H:i:s")
-                ]);
+//         if ($request['level']=='manejer') {
+//                 DB::table('manejer')->where('id_manejer',$id)->update([
+//                     'name' => $request->name,
+//                     'notlp' => $request->no_tlp,
+//                     'level' => $request->level,
+//                     'status' => $request->status,
+//                     'email' => $request->email,
+//                     'password' => $request->password,
+//                     'created_at' => date("Y-m-d H:i:s"),
+//                     'updated_at' => date("Y-m-d H:i:s")
+//                 ]);
+
+//         }
+//         elseif ($request['level']=='kasir') {
+//             DB::table('kasir')->where('id_kasir',$id)->update([
+//                     'name'=> $request['name'],
+//                     'notlp'=>$request['no_tlp'],
+//                     'level'=>$request['level'],
+//                     'status'=>$request['status'],
+//                     'email'=>$request['email'],
+//                     'password'=>$request['password'],
+//                     'created_at' => date("Y-m-d H:i:s"),
+//                     'updated_at' => date("Y-m-d H:i:s")
+//             ]);
+
 
         }
-        elseif ($request['level']=='kasir') {
-            DB::table('kasir')->where('id_kasir',$id)->update([
-                    'name'=> $request['name'],
-                    'notlp'=>$request['no_tlp'],
-                    'level'=>$request['level'],
-                    'status'=>$request['status'],
-                    'email'=>$request['email'],
-                    'password'=>$request['password'],
-                    'created_at' => date("Y-m-d H:i:s"),
-                    'updated_at' => date("Y-m-d H:i:s")
-            ]);
-
-
-        }
 
 
 
- return redirect()->route('pengguna.index')->with('success', "Data pengguna berhasil di update");
-        // return redirect('admin/index');
-    }
+//  return redirect()->route('pengguna.index')->with('success', "Data pengguna berhasil di update");
+//         // return redirect('admin/index');
+//     }
 
 
     public function destroy($id)

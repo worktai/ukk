@@ -46,6 +46,7 @@
                                 <div class="input-group mb-3">
                                     <select class="form-control" name="status" id="status">
                                         <option value="aktif">aktif</option>
+                                        <option value="nonaktif">nonaktif</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
@@ -60,8 +61,8 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-primary">Tambah</button>
                             </form>
                         </div>
                     </div>
@@ -85,7 +86,7 @@
                     <td>{{$p->level}}</td>
                     <td>{{$p->email}}</td>
                     <td>{{$p->password}}</td>
-                    <td><a href="">Edit</a></td>
+                    <td><a href="{{ route('pengguna.edit',$p->id_pengguna) }}" class="btn btn-warning btn-sm">Edit</a></td>
 
                 </tr>
                 @endforeach
