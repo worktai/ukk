@@ -7,14 +7,14 @@
         <h1>Catatan Transaksi</h1>
         <table class="table table-hover">
         <tr>
-            <th>ID Pengguna</th>
-            <th>Nama</th>
-            <th>No Telepon</th>
-            <th>Status</th>
-            <th>Level</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Aksi</th>
+            <th>ID Transaksi</th>
+            <th>Id meja</th>
+            <th>Id menu</th>
+            <th>Id Pegawai</th>
+            <th>Jumlah Pesanan</th>
+            <th>Total Harga</th>
+            <th>Jumlah Pembayaran</th>
+            <th>Uang Kembalian</th>
         </tr>
         </table>
         </div>

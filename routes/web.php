@@ -20,26 +20,30 @@ Route::get('pengguna/{id}/edit', 'PenggunaController@edit')->name('pengguna.edit
 
 // HALAMAN ADMIN
 Route::get('/utama', function() {
-    return view('admin.utama');
+    return view('admin.utama', ["title" => "Log Aktivitas Pegawai"]);
 })->name('utama')->middleware('cekstatus:admin');
 
 
 // HALAMAN KASIR
 Route::get('/transaksi', function() {
-    return view('kasir.transaksi');
+    return view('kasir.transaksi',["title" => "Transaksi"]);
 })->name('transaksi')->middleware('cekstatus:kasir');
 
 Route::get('/order_menu', function(){
-    return view ('kasir.order');
+    return view ('kasir.order',["title" => "Order Menu"]);
 })->name('order')->middleware('cekstatus:kasir');
 
 Route::get('/catatan_transaksi', function(){
-    return view ('kasir.catatan_transaksi');
+    return view ('kasir.catatan_transaksi' ,["title" => "Catatan Transaksi"]);
 })->name('catatan_transaksi')->middleware('cekstatus:kasir');
 
 
 // HALAMAN MANEJER
 Route::get('/menu_manejer', 'MenuController@index')->name('menu_manejer')->middleware('cekstatus:manejer');
+Route::get('/note', function() {
+    return view('manejer.note', ["title" => "Log Aktivitas Pegawai"]);
+})->name('note')->middleware('cekstatus:manejer');
+
 
 Route::get('menu_manejer/index', 'MenuController@index')->name('andex')->middleware('cekstatus:manejer');
 Route::post('/menu_manejer/store', 'MenuController@store')->name('store')->middleware('cekstatus:manejer');

@@ -8,7 +8,6 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Tambah Menu
         </button>
-        <input type="search">
             <table class="table table-striped">
                 <tr>
                     <th>ID MENU</th>

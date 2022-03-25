@@ -22,7 +22,7 @@ class MenuController extends Controller
 
 
 
-        return view('manejer/menu_manejer',['menu' => $menu]);
+        return view('manejer/menu_manejer',['menu' => $menu], ["title" => "Manejer"]);
     }
 
     public function store(Request $request)

@@ -34,7 +34,7 @@ class PenggunaController extends Controller
 
         // $pengguna = DB::table('pengguna')->get();
 
-    return view('admin/pengguna',['peng' => $peng]);
+    return view('admin/pengguna',['peng' => $peng], ["title" => "Peran User"]);
     }
 
 
