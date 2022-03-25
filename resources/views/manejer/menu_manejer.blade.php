@@ -4,12 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-        <h1>Halo</h1>
+        <h1>Menu Makanan dan Minuman</h1>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Tambah Menu
         </button>
+        <input type="search">
             <table class="table table-striped">
                 <tr>
+                    <th>ID MENU</th>
                     <th>Nama menu</th>
                     <th>kategori</th>
                     <th>harga</th>
@@ -18,6 +20,7 @@
                 </tr>
                 @foreach($menu as $m)
                 <tr>
+                    <td>{{ $m->id_menu }}</td>
                     <td>{{ $m->nama }}</td>
                     <td>{{ $m->kategori }}</td>
                     <td>{{ $m->harga}}</td>
@@ -25,8 +28,10 @@
                     <img src="{{asset('fotohotel/'.$m->image)}}" alt="" style="width:100px";>
                     </td>
                     <td>
-                    <a href="{{ route('menu.edit',$m->id_menu) }}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="{{ route('menu.edit',$m->id_menu) }}" class="btn btn-warning btn-sm">Ubah</a>
+                    <a href="{{ route('menu.delete',$m->id_menu) }}" class="btn btn-danger btn-sm">Hapus</a>
                     </td>
+                    
                 @endforeach
             </table>
             {!! $menu->links() !!}

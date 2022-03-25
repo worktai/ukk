@@ -57,8 +57,21 @@ class MenuController extends Controller
 
     public function edit($id_menu)
     {
-        $data = menu::find($id_menu);
-        return view('manejer/editmenu');
+        $menu = menu::find($id_menu);
+        return view('manejer/editmenu',['menu' => $menu]);
     }
+    public function update(Request $request,$id_menu)
+    {
+        $menu = menu::find($id_menu);
+        $menu->update($request->all());
+        return redirect()->route('menu_manejer');
+    }
+    public function delete($id_menu)
+    {
+        $menu = menu::find($id_menu);
+        $menu->delete();
+        return redirect()->route('menu_manejer');
+    }
+ 
 
 }

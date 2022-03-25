@@ -36,11 +36,12 @@
                     <!-- Left Side Of Navbar -->
 
                     <ul class="navbar-nav mr-auto">
-                        <a class="navbar-brand">HALLO</a>
+                        <a class="navbar-brand">WebKasir</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <nav class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
                             {{-- ADMIN DIBAWAH --}}
                             @if(auth()->user()->level=="Admin")
                             <div class="navbar-nav">
@@ -49,15 +50,19 @@
                             <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="{{route('index')}}">Pengguna/User</a>
                             </div>
-                            {{-- KASIR DIBAWAH --}}
-                            @elseif(auth()->user()->level=="Kasir")
 
+                            {{-- KASIR DIBAWAH --}}
+                            @elseif(auth()->user()->level=="kasir")
+                            <div class="navbar-nav">
+                                <a class="nav-link active" aria-current="page" href="{{route('order')}}">Order Menu</a>
+                            </div>
                             <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="{{route('transaksi')}}">Transaksi</a>
                             </div>
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('menu')}}">Menu Makanan/Minuman</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('catatan_transaksi')}}">Catatan Transaksi</a>
                             </div>
+                    
                             {{-- MANEJER DIBAWAH --}}
                             @elseif(auth()->user()->level=="manejer")
                             <div class="navbar-nav">

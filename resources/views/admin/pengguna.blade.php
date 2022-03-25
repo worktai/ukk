@@ -70,6 +70,7 @@
             </div>
             <table class="table">
                 <tr>
+                    <th>ID Pengguna</th>
                     <th>Nama</th>
                     <th>No Telepon</th>
                     <th>Status</th>
@@ -80,6 +81,7 @@
                 </tr>
                 @foreach($peng as $i => $p)
                 <tr>
+                    <td>{{$p->id_pengguna}}</td>
                     <td>{{$p->name}}</td>
                     <td>{{$p->no_tlp}}</td>
                     <td>{{$p->status}}</td>

@@ -174,13 +174,12 @@ class PenggunaController extends Controller
     {
     
         $pengguna = pengguna::find($id_pengguna);
-
         $pengguna = DB::table('pengguna')
-        ->join('users', 'pengguna.id_pengguna', '=', 'users.id')
-        ->join('kasir','pengguna.id_pengguna','=','kasir.id_kasir')
-        ->join('manejer','pengguna.id_pengguna','=','manejer.id_manejer')
-        ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
-        ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
+        ->leftJoin('users', 'pengguna.id_pengguna', '=', 'users.id')
+        ->leftJoin('kasir','pengguna.id_pengguna','=','kasir.id_kasir')
+        ->leftJoin('manejer','pengguna.id_pengguna','=','manejer.id_manejer')
+        ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+        ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
         ->where('pengguna.id_pengguna',)
         ->select('pengguna.*', 'users.*','kasir.*','manejer.*','model_has_roles.model_id')
 

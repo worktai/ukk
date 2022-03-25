@@ -47,7 +47,7 @@ class LoginController extends Controller
         }
 
         else if($user->hasRole('kasir')) {
-            return redirect()->route('transaksi');
+            return redirect()->route('order');
         }
 
         return redirect()->route('menu_manejer');
