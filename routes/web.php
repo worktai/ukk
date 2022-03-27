@@ -12,7 +12,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-// ROUTE DATA USER CRU (MELIHAT, EDIT)
+// ADMIN ( ROUTE DATA USER CRU (MELIHAT, EDIT) )
 Route::get('pengguna/index', 'PenggunaController@index')->name('index')->middleware('cekstatus:admin');
 Route::post('/pengguna/create', 'PenggunaController@create')->name('pengguna.create')->middleware('cekstatus:admin');
 Route::get('pengguna/{id}/edit', 'PenggunaController@edit')->name('pengguna.edit')->middleware('cekstatus:admin');
@@ -43,7 +43,6 @@ Route::get('/menu_manejer', 'MenuController@index')->name('menu_manejer')->middl
 Route::get('/note', function() {
     return view('manejer.note', ["title" => "Log Aktivitas Pegawai"]);
 })->name('note')->middleware('cekstatus:manejer');
-
 
 Route::get('menu_manejer/index', 'MenuController@index')->name('andex')->middleware('cekstatus:manejer');
 Route::post('/menu_manejer/store', 'MenuController@store')->name('store')->middleware('cekstatus:manejer');

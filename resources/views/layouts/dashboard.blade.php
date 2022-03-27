@@ -62,7 +62,7 @@
                             <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="{{route('catatan_transaksi')}}">Catatan Transaksi</a>
                             </div>
-                    
+
                             {{-- MANEJER DIBAWAH --}}
                             @elseif(auth()->user()->level=="manejer")
                             <div class="navbar-nav">
