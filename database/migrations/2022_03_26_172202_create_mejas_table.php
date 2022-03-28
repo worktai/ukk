@@ -14,7 +14,7 @@ class CreateMejasTable extends Migration
     public function up()
     {
         Schema::create('mejas', function (Blueprint $table) {
-            $table->id();
+            $table->id('meja_id');
             $table->integer('no_meja')->unique();
             $table->string('status');
             $table->timestamps();

@@ -1,77 +1,77 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\transaksi;
-use App\Models\user;
 use App\menu;
+use App\kategori;
 use DB;
-use Intervention\Image\Facades\Image;
+use Image;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
-
 
 class MenuController extends Controller
 {
     public function index()
     {
-        $menu = DB::table('menu')->paginate(5);
-        // ->leftJoin('menu_has_user', 'menu.id_menu', '=', 'menu_has_user.id_menu')
-        // ->leftJoin('users','menu_has_user.id_user', '=', 'users.id')
-        // ->select('users.name','menu.*')
+        // $menu = DB::table('menus')->paginate(5);
+        // return view('manejer.menu',['menu' => $menu], ["title" => "Manejer"]);
+        return view('manejer.menu',[
+            'datakategori'=>kategori::all(),
+            'datamenu'=>menu::with('kategori')->latest()->get()
 
-
-
-
-        return view('manejer/menu_manejer',['menu' => $menu], ["title" => "Manejer"]);
+        ]);
     }
-
     public function store(Request $request)
     {
-        $data=Menu::create($request->all());
-
-        if($request->hasFile('image')){
-            $request->file('image')->move('fotohotel/', $request->file('image')->getClientOriginalName());
-            $data->image = $request->file('image')->getClientOriginalName();
-            $data->save();
+        
+        $request->validate([
      
-        }
-        // if ($files = $request->file('image')) {
-        //     $destinationPath = 'public/image/'; // upload path
-        //     $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
-        //     $files->move($destinationPath, $profileImage);
-        //     $insert['image'] = "$profileImage";
-        //     }
-       
-        // menu::create([
-        //     'nama'=> $request['nama'],
-        //     'kategori'=>$request['kategori'],
-        //     'harga'=>$request['harga'],
-        //     'image'=>$request['image'],
-        //     'created_at' => date("Y-m-d H:i:s"),
-        //     'updated_at' => date("Y-m-d H:i:s") 
-           
-        // ]); 
+            'foto' => 'image|file',
+            'nama_menu' => 'required',
+            'kategori_id' => 'required',
+            'harga' => 'required',
+            // dd($request)
+        ]);
+
       
-        return redirect()->route('menu_manejer');
+          $image = $request->file('foto');
+          $nameImage = $request->file('foto')->getClientOriginalName();
+      
+          
+      
+          $oriPath = public_path() . '/fotohotel/' . $nameImage;
+          $oriImage = image::make($image)->save($oriPath);
+      
+    
+            menu::create([
+            'foto'=> $nameImage,
+            'nama_menu'=>$request['nama_menu'],
+            'kategori_id'=>$request['kategori_id'],
+            'harga'=>$request['harga'],
+        ]);
+            //   dd($request);
+
+        $kat = Kategori::find($request->kategori_id);
+        $jml = $kat->jumlah + 1;
+        $kat->update(['jumlah' => $jml]);
+   
+        return redirect()->route('menu.index')->with('error', 'Tambah Menu Berhasil!!..');
     }
 
-    public function edit($id_menu)
+    public function edit($id)
     {
-        $menu = menu::find($id_menu);
+        $menu = menu::find($id);
         return view('manejer/editmenu',['menu' => $menu]);
     }
-    public function update(Request $request,$id_menu)
+    public function update(Request $request, $id)
     {
-        $menu = menu::find($id_menu);
+        $menu = menu::find($id);
         $menu->update($request->all());
-        return redirect()->route('menu_manejer');
+        return redirect()->route('menu/index');
     }
-    public function delete($id_menu)
-    {
-        $menu = menu::find($id_menu);
-        $menu->delete();
-        return redirect()->route('menu_manejer');
-    }
- 
 
+    public function destroy($id)
+    {
+        // dd($id);
+        $deleted = DB::table('menus')->where('id', $id)->delete();
+        return redirect()->route('menu.index');
+    }
 }

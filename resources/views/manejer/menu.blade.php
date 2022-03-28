@@ -17,23 +17,29 @@
                     <th>image</th>
                     <th>Aksi</th>
                 </tr>
-                @foreach($menu as $m)
+                @foreach($datamenu as $m)
                 <tr>
-                    <td>{{ $m->id_menu }}</td>
-                    <td>{{ $m->nama }}</td>
-                    <td>{{ $m->kategori }}</td>
+                    <td>{{ $m->id }}</td>
+                    <td>{{ $m->nama_menu }}</td>
+                    <td>{{ $m->kategori_id }}</td>
                     <td>{{ $m->harga}}</td>
                     <td>
-                    <img src="{{asset('fotohotel/'.$m->image)}}" alt="" style="width:100px";>
+                    <img src="{{asset('fotohotel/'.$m->foto)}}" alt="" style="width:100px";>
                     </td>
                     <td>
-                    <a href="{{ route('menu.edit',$m->id_menu) }}" class="btn btn-warning btn-sm">Ubah</a>
-                    <a href="{{ route('menu.delete',$m->id_menu) }}" class="btn btn-danger btn-sm">Hapus</a>
+                    <form action="{{ route('menu.destroy', $m->id) }}" method="POST">
+                    <a href="{{ route('menu.edit',$m->id) }}" class="btn btn-primary">Edit</a>
+
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+
+                </form>
                     </td>
                     
                 @endforeach
             </table>
-            {!! $menu->links() !!}
         </div>
     </div>
 </div>
@@ -48,20 +54,22 @@
       </div>
       <div class="modal-body">
 
-        <form action="{{route('store')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('menu.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Nama</strong>
-                    <input type="text" name="nama" class="form-control" placeholder="cth:NasGor Padang">
+                    <input type="text" name="nama_menu" class="form-control" placeholder="cth:NasGor Padang">
                 </div>
             </div>
-            <strong for="">Kategori Menu</strong>
-            <div class="form-group ">
-                <select class="form-control" name="kategori" id="level">
-                    <option value="Makanan">Makanan</option>
-                    <option value="Minuman">Minuman</option>
+            <div class="form-group">
+                <label for="kategori">Kategori</label>
+                <select class="form-control" name="kategori_id" id="kategori">
+                  <option value="">Pilih kategori</option>
+                  @foreach($datakategori as $kategori)
+                    <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                  @endforeach
                 </select>
             </div>
             <div class="form-group">
@@ -71,10 +79,9 @@
             </div>
             <label for="">Gambar</label>
             <div class="input-group mb-3">
-                <input type="file" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="image" placeholder="no telepon">
+                <input type="file" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="foto">
             </div>
-        
-
+    
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Tambah</button>

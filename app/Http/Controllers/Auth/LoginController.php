@@ -50,6 +50,6 @@ class LoginController extends Controller
             return redirect()->route('order');
         }
 
-        return redirect()->route('menu_manejer');
+        return redirect()->route('menu.index');
     }
 }

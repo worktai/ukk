@@ -9,7 +9,7 @@
     {{-- buat modal --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <title>{{ $title }}</title>
+    <title></title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -66,10 +66,16 @@
                             {{-- MANEJER DIBAWAH --}}
                             @elseif(auth()->user()->level=="manejer")
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('menu_manejer')}}">Menu Makanan/Minuman</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('menu.index')}}">Menu Makanan/Minuman</a>
                             </div>
                             <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="{{route('note')}}">Catatan transaksi</a>
+                            </div>
+                            <div class="navbar-nav">
+                                <a class="nav-link active" aria-current="page" href="{{route('kategori.index')}}">Kategori</a>
+                            </div>
+                            <div class="navbar-nav">
+                                <a class="nav-link active" aria-current="page" href="{{route('meja.index')}}">Meja</a>
                             </div>
                             @endif
 

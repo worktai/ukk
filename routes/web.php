@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\MejaController;
 
 
 Route::get('/', function () {
@@ -39,13 +41,15 @@ Route::get('/catatan_transaksi', function(){
 
 
 // HALAMAN MANEJER
-Route::get('/menu_manejer', 'MenuController@index')->name('menu_manejer')->middleware('cekstatus:manejer');
 Route::get('/note', function() {
     return view('manejer.note', ["title" => "Log Aktivitas Pegawai"]);
 })->name('note')->middleware('cekstatus:manejer');
 
-Route::get('menu_manejer/index', 'MenuController@index')->name('andex')->middleware('cekstatus:manejer');
-Route::post('/menu_manejer/store', 'MenuController@store')->name('store')->middleware('cekstatus:manejer');
-Route::get('menu_manejer/{id}/edit', 'MenuController@edit')->name('menu.edit')->middleware('cekstatus:manejer');
-Route::post('menu_manejer/{id}/update', 'MenuController@update')->name('menu.update')->middleware('cekstatus:manejer');
-Route::get('menu_manejer/{id}/delete', 'MenuController@delete')->name('menu.delete')->middleware('cekstatus:manejer');
+// MANEJER -> HALAMAN DATA KATAGORI. CONTOHNYA MAKANAN/MINUMAN
+route::resource('kategori','KategoriController');
+
+// MANEJER -> HALAMAN DATA MENU. CONTOHNYA NASI PADANG
+route::resource('menu','MenuController');
+
+// MANEJER -> HALAMAN DATA MEJA
+route::resource('meja','MejaController');
