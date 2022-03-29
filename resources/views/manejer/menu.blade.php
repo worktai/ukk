@@ -4,24 +4,28 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-        <h1>Menu Makanan dan Minuman</h1>
+        <div class="card-header d-flex justify-content-between">
+        <h4>Menu Makanan dan Minuman</h4>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Tambah Menu
         </button>
-            <table class="table table-striped">
+        </div>
+        <div class="card-body">
+                <div class="table-responsive">
+            <table class="table table-bordered">
                 <tr>
                     <th>ID MENU</th>
                     <th>Nama menu</th>
-                    <th>kategori</th>
-                    <th>harga</th>
-                    <th>image</th>
+                    <th>Kategori</th>
+                    <th>Harga</th>
+                    <th>Image</th>
                     <th>Aksi</th>
                 </tr>
                 @foreach($datamenu as $m)
                 <tr>
                     <td>{{ $m->id }}</td>
                     <td>{{ $m->nama_menu }}</td>
-                    <td>{{ $m->kategori_id }}</td>
+                    <td>{{ $m->kategori->nama_kategori}}</td>
                     <td>{{ $m->harga}}</td>
                     <td>
                     <img src="{{asset('fotohotel/'.$m->foto)}}" alt="" style="width:100px";>
@@ -40,6 +44,8 @@
                     
                 @endforeach
             </table>
+            </div>
+</div>
         </div>
     </div>
 </div>

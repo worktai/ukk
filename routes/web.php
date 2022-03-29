@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MejaController;
-
+use App\Http\Controllers\KasirController;
+use App\Http\Controllers\PesananController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/welcome');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -27,17 +28,17 @@ Route::get('/utama', function() {
 
 
 // HALAMAN KASIR
-Route::get('/transaksi', function() {
-    return view('kasir.transaksi',["title" => "Transaksi"]);
-})->name('transaksi')->middleware('cekstatus:kasir');
-
-Route::get('/order_menu', function(){
-    return view ('kasir.order',["title" => "Order Menu"]);
-})->name('order')->middleware('cekstatus:kasir');
-
 Route::get('/catatan_transaksi', function(){
     return view ('kasir.catatan_transaksi' ,["title" => "Catatan Transaksi"]);
 })->name('catatan_transaksi')->middleware('cekstatus:kasir');
+
+// KASIR -> FOLDER PELANGGAN -> HALAMAN ORDER DAN TRANSAKSI:
+Route::get('/pesan',[KasirController::class , 'index'])->name('indexpesan');
+Route::get('/list',[KasirController::class , 'showlist']);
+Route::post('/pesan/tambah_pesan',[KasirController::class , 'order']);
+Route::get('/pesan/{id}', [KasirController::class, 'tambahpesan']);
+Route::get('/cetak/{id}', [KasirController::class, 'cetakpesan']);
+
 
 
 // HALAMAN MANEJER

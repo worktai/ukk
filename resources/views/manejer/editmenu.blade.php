@@ -8,13 +8,14 @@
                 Edit Menu Makanan/Minuman
                 <hr>
             </h2>
-                <form action="{{route('menu.update', $menu->id_menu)}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('menu.update', $menu->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="row">
+                    @method('PUT')
+                <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Nama</strong>
-                            <input type="text" value="{{$menu->nama}}" name="nama" class="form-control" placeholder="cth:NasGor Padang">
+                            <input type="text" value="{{$menu->nama_menu}}" name="nama_menu" class="form-control" placeholder="cth:NasGor Padang">
                         </div>
                     </div>
                     <strong for="">Kategori Menu</strong>
@@ -28,6 +29,9 @@
                         <strong>Harga</strong>
                         <input type="price" value="{{$menu->harga}}" name="harga" class="form-control" placeholder="cth:10000">
                     </div>
+                    <label for="">Gambar</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="foto">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-warning">Ubah</button>

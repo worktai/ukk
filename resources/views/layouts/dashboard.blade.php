@@ -54,13 +54,10 @@
                             {{-- KASIR DIBAWAH --}}
                             @elseif(auth()->user()->level=="kasir")
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('order')}}">Order Menu</a>
-                            </div>
-                            <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('transaksi')}}">Transaksi</a>
-                            </div>
-                            <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="{{route('catatan_transaksi')}}">Catatan Transaksi</a>
+                            </div>
+                            <div class="navbar-nav">
+                                <a class="nav-link active" aria-current="page" href="{{route('indexpesan')}}">Pesan Order</a>
                             </div>
 
                             {{-- MANEJER DIBAWAH --}}

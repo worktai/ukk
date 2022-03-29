@@ -1,9 +1,4 @@
 @extends('layouts.dashboard')
-
-@section('style')
-    @include('manejer.style')
-@endsection
-
 @section('content')
 
 <div class="container">
@@ -15,36 +10,29 @@
               <div class="card-body">
                 <div class="table-responsive">
                 <table class="table">
-                    <tr class=" text-primary">
-                      <th>
-                        Nama
-                      </th>
-                      <th class="text-center">
-                        Jumlah Menu
-                      </th>
-                      <th class="text-center">
-                        Aksi
-                      </th>
-                    </tr>
-                    @foreach($datakategori as $kategori)
+                    <tr class="text-primary">
+
+                      <th>Id</th>  
+                      <th>Nama</th>
+                      <!-- <th>Jumlah Menu</th> -->
+                      <th>Aksi</th>
+
+                    </tr>    
+                    @foreach($datakategori as $kategori)  
                     <tr>
-                        <td>
-                          {{ $kategori->id }}
-                        </td>
-                        <td>
-                          {{ $kategori->nama_kategori }}
-                        </td>
-                        <td align="center">
-                          {{ $kategori->jumlah }}
-                        </td>
-                        <td align="center" class="d-flex justify-content-center ">
-                          <button class="btn btn-sm btn-warning edit-kategori mr-2" data-toggle="modal" data-target="#exampleModalCenter">Edit</button>
-                          <form class="hapus-kategori"  data-nama-kat={{ $kategori->nama_kategori }} data-id-ket={{ $kategori->id }}>
+
+                      <td>{{ $kategori->id }}</td>
+                      <td>{{ $kategori->nama_kategori }}</td>
+                      <!-- <td>{{ $kategori->jumlah }}</td> -->
+                      <td>    
+                        <form action="{{ route('kategori.destroy', $kategori->id) }}" method="POST">
                             @csrf
-                            <button class="btn btn-sm btn-danger" type="submit">hapus</button>
-                          </form>
-                        </td>
-                      </tr>
+                            @method('DELETE')
+                          <button type="submit" class="btn btn-danger">Hapus</button>
+                        </form>
+                      </td>
+
+                    </tr>
                       @endforeach
                 </table>
                 </div>
@@ -82,11 +70,5 @@
         </div>
     </div>
 </div>
-
- @section('script')
-        @include('manejer.script')
-        <script src="{{ asset('js/admin/kategori.js') }}"></script>
-
-      @endsection
 
 @endsection

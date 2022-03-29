@@ -1,20 +1,16 @@
 @extends('layouts.dashboard')
 
-    @section('style')
-    @include('manejer.style')
-    @endsection
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
     <div class="card-header d-flex justify-content-between">
-        <h4 class="card-title ">Data Kategori</h4>
-        <button class="btn btn-primary" id="btn-Tambah-kategori" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fas fa-plus"></i> Tambah Kategori</button>
+        <h4 class="card-title ">Data Meja</h4>
+        <button class="btn btn-primary" id="btn-Tambah-kategori" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fas fa-plus"></i> Tambah Meja</button>
     </div>
             <div class="card-body">
                 <div class="table-responsive">
                
-                    <table class="table">
+                    <table class="table table-bordered">
                         <tr>
                             <th>Id</th>
                             <th>No Meja</th>
@@ -23,7 +19,7 @@
                         </tr>
                         @foreach($datameja as $meja)
                         <tr>
-                            <td>{{ $meja->id }}</td>
+                            <td>{{ $meja->meja_id }}</td>
                             <td>{{ $meja->no_meja }}</td>
                             <td>
                                 <div class="badge {{ ($meja->status == 'Tersedia') ? 'badge-success' : 'badge-danger' }}">
@@ -31,8 +27,8 @@
                                 </div>
                             </td>
                             <td>
-                            <form action="{{ route('meja.destroy', $meja->id) }}" method="POST">
-                                <a href="{{ route('meja.edit',$meja->id) }}" class="btn btn-primary">Edit</a>
+                            <form action="{{ route('meja.destroy', $meja->meja_id) }}" method="POST">
+                                <a href="{{ route('meja.edit',$meja->meja_id) }}" class="btn btn-primary">Edit</a>
 
                                 @csrf
                                 @method('DELETE')
@@ -63,7 +59,7 @@
             <form action="{{ route('meja.store') }}" method="POST" id ="FormMeja">
               @csrf
             <div class="modal-body">
-              <input type="hidden" class="form-control" name="meja_id" id="meja">
+              <!-- <input type="hidden" class="form-control" name="meja_id" id="meja"> -->
               <div class="form-group">
                 <label for="no_meja">No Meja</label>
                 <input type="number" class="form-control" name="no_meja" id="no_meja" placeholder="masukkan nomor meja..">
@@ -89,9 +85,4 @@
           </div>
         </div>
       </div>
-
-@endsection
-@section('script')
-@include('manejer.script')
-    <script src="{{ asset('js/manejer/meja.js') }}"></script>
 @endsection

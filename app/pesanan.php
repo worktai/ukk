@@ -10,7 +10,7 @@ use App\meja;
 class pesanan extends Model
 {
     use HasFactory;
-    // protected $fillable = ['id','nama_pemesan','tgl_pesan','meja_id','Total'];
+    protected $fillable = ['id','nama_pemesan','tgl_pesan','meja_id','Total'];
 
     public function meja(){
         return $this->belongsTo(meja::class,'meja_id');

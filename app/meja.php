@@ -9,7 +9,8 @@ use App\pesanan;
 class meja extends Model
 {
     // use HasFactory;
-
+    protected $table ='mejas';
+    protected $primaryKey='meja_id';
     protected $guarded = [];
     
     public function pesanan(){

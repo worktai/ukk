@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\meja;
+use App\pesanan;
+use DB;
 use Illuminate\Http\Request;
 
 class MejaController extends Controller
@@ -15,6 +17,7 @@ class MejaController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'no_meja' => 'required',
             'status' => 'required'
@@ -25,23 +28,25 @@ class MejaController extends Controller
 
     public function edit($id)
     {
-        $request->validate([
-            'no_meja' => 'required',
-            'status' => 'required'
-        ]);
-        meja::find($id)->update($request->all());
-        return redirect()->route('meja.index');
+        $meja_id = $id;
+        $meja = meja::find($meja_id);
+        return view('manejer.editmeja',['meja' => $meja]);
     }
-
     public function update(Request $request, $id)
     {
-        $meja = menu::find($id);
-        $meja->update($request->all());
+      
+        $request->validate([
+            'status' => 'required'
+        ]);
+        meja::where('meja_id',$id)->update([
+            'status'=>$request['status'],
+        ]);
         return redirect()->route('meja.index');
     }
 
     public function destroy($id)
-    {
+    {   
+        $deleted = DB::table('mejas')->where('meja_id', $id)->delete();
         return redirect()->route('meja.index');
     }
 }

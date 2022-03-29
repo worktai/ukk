@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\menu;
+use App\menupesan;
 use App\kategori;
 use DB;
 use Image;
@@ -53,19 +54,19 @@ class MenuController extends Controller
         $jml = $kat->jumlah + 1;
         $kat->update(['jumlah' => $jml]);
    
-        return redirect()->route('menu.index')->with('error', 'Tambah Menu Berhasil!!..');
+        return redirect()->route('menu.index');
     }
 
     public function edit($id)
     {
         $menu = menu::find($id);
-        return view('manejer/editmenu',['menu' => $menu]);
+        return view('manejer.editmenu', ['menu' => $menu]);
     }
     public function update(Request $request, $id)
     {
         $menu = menu::find($id);
         $menu->update($request->all());
-        return redirect()->route('menu/index');
+        return redirect()->route('menu.index');
     }
 
     public function destroy($id)

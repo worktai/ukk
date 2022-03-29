@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h1>Ini halaman Framework Laravel</h1></div>
+                <div class="card-header"><h1>Hallooo</h1></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <h4>SELAMAT DATANG BOY/GIRL</h4>
+                    <h4>Silahkan Logout</h4>
                 </div>
             </div>
         </div>

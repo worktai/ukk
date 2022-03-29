@@ -145,31 +145,8 @@ class PenggunaController extends Controller
         // return $request->all();
     }
 
-
-            // managefr
-
-
-            // return redirect()->route('pengguna.index')->with('success','Data Berhasil di Input');
-
      }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id_pengguna)
     {
     

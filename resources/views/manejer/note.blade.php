@@ -9,29 +9,29 @@
                 <hr>
                 <form action="" method="POST">
                     @csrf
-                        <div class="form-floating ml-3">
+                      
                             <div class="row">
-                                <div class="col-sm-8">
+                                <div class="col-sm-3">
                                     <input type="date" name="filter" class="form-control" id="filter">
                                 </div>
                                 <div class="col">
                                     <button type="submit" class="btn btn-primary">Filter</button>
                                 </div>
                             </div>
-                        </div><br>
+                       <br>
                     </form>
                     <form action="" method="POST">
                     @csrf
-                        <div class="form-floating ml-3">
+                        
                             <div class="row">
-                                <div class="col-sm-8">
+                                <div class="col-sm-3">
                                     <input type="text" name="search" class="form-control" id="search" placeholder="Nama Tamu">
                                 </div>
                                 <div class="col">
                                     <button type="submit" class="btn btn-primary">Cari</button>
                                 </div>
                             </div>
-                        </div><br>
+                       
                     </form>
             </h2>
         </div>
