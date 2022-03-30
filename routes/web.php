@@ -28,16 +28,11 @@ Route::get('/utama', function() {
 
 
 // HALAMAN KASIR
-Route::get('/catatan_transaksi', function(){
-    return view ('kasir.catatan_transaksi' ,["title" => "Catatan Transaksi"]);
-})->name('catatan_transaksi')->middleware('cekstatus:kasir');
+Route::get('/catatan_transaksi', 'KasirController@show')->name('catatan_transaksi')->middleware('cekstatus:kasir');
 
 // KASIR -> FOLDER PELANGGAN -> HALAMAN ORDER DAN TRANSAKSI:
-Route::get('/pesan',[KasirController::class , 'index'])->name('indexpesan');
-Route::get('/list',[KasirController::class , 'showlist']);
-Route::post('/pesan/tambah_pesan',[KasirController::class , 'order']);
-Route::get('/pesan/{id}', [KasirController::class, 'tambahpesan']);
-Route::get('/cetak/{id}', [KasirController::class, 'cetakpesan']);
+Route::resource('dpesan','KasirController');
+Route::post('pelanggan.index', 'KasirController@simpan')->name('simpan');
 
 
 
@@ -45,6 +40,8 @@ Route::get('/cetak/{id}', [KasirController::class, 'cetakpesan']);
 Route::get('/note', function() {
     return view('manejer.note', ["title" => "Log Aktivitas Pegawai"]);
 })->name('note')->middleware('cekstatus:manejer');
+Route::get('laporantransaksi', [App\Http\Controllers\ManagerController::class, 'laporantransaksi'])->name('laporantransaksi')->middleware('cekstatus:manager');
+
 
 // MANEJER -> HALAMAN DATA KATAGORI. CONTOHNYA MAKANAN/MINUMAN
 route::resource('kategori','KategoriController');

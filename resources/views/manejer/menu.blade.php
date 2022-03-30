@@ -11,41 +11,36 @@
         </button>
         </div>
         <div class="card-body">
-                <div class="table-responsive">
-            <table class="table table-bordered">
-                <tr>
-                    <th>ID MENU</th>
-                    <th>Nama menu</th>
-                    <th>Kategori</th>
-                    <th>Harga</th>
-                    <th>Image</th>
-                    <th>Aksi</th>
-                </tr>
-                @foreach($datamenu as $m)
-                <tr>
-                    <td>{{ $m->id }}</td>
-                    <td>{{ $m->nama_menu }}</td>
-                    <td>{{ $m->kategori->nama_kategori}}</td>
-                    <td>{{ $m->harga}}</td>
-                    <td>
-                    <img src="{{asset('fotohotel/'.$m->foto)}}" alt="" style="width:100px";>
-                    </td>
-                    <td>
-                    <form action="{{ route('menu.destroy', $m->id) }}" method="POST">
-                    <a href="{{ route('menu.edit',$m->id) }}" class="btn btn-primary">Edit</a>
-
-                    @csrf
-                    @method('DELETE')
-
-                    <button type="submit" class="btn btn-danger">Hapus</button>
-
-                </form>
-                    </td>
-                    
-                @endforeach
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>ID MENU</th>
+                        <th>Nama menu</th>
+                        <th>Kategori</th>
+                        <th>Harga</th>
+                        <th>Image</th>
+                        <th>Aksi</th>
+                    </tr>
+                    @foreach($datamenu as $m)
+                    <tr>
+                        <td>{{ $m->id }}</td>
+                        <td>{{ $m->nama_menu }}</td>
+                        <td>{{ $m->kategori->nama_kategori}}</td>
+                        <td>{{ $m->harga}}</td>
+                        <td><img src="{{asset('fotohotel/'.$m->foto)}}" alt="" style="width:100px";></td>
+                        <td>
+                        <form action="{{ route('menu.destroy', $m->id) }}" method="POST">
+                        <a href="{{ route('menu.edit',$m->id) }}" class="btn btn-primary">Edit</a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                        </form>
+                        </td>  
+                    @endforeach
+                    </tr>
+                </table>
             </div>
-</div>
+        </div>
         </div>
     </div>
 </div>

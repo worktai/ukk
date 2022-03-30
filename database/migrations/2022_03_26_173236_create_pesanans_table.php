@@ -16,9 +16,13 @@ class CreatePesanansTable extends Migration
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pemesan');
-            $table->string('tgl_pesan');
-            $table->foreignId('meja_id');
-            $table->string('Total');
+            $table->string('harga');
+            $table->string('nama_menu');
+            $table->integer('jumlah');
+            $table->integer('meja');
+            $table->integer('total_beli');
+            $table->integer('total_bayar');
+            $table->integer('kembalian');
             $table->timestamps();
         });
     }

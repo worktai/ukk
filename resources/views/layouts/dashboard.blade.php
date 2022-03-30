@@ -57,7 +57,7 @@
                                 <a class="nav-link active" aria-current="page" href="{{route('catatan_transaksi')}}">Catatan Transaksi</a>
                             </div>
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('indexpesan')}}">Pesan Order</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('dpesan.index')}}">Pesan Order</a>
                             </div>
 
                             {{-- MANEJER DIBAWAH --}}
