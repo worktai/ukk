@@ -12,16 +12,8 @@ use Illuminate\Support\Facades\Hash;
 
 class PenggunaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        // $peng = pengguna::all();
-        // return view('admin/pengguna',['peng' => $peng]);
-
         $peng = DB::table('pengguna')
         ->leftJoin('pengguna_has_user', 'pengguna.id_pengguna', '=', 'pengguna_has_user.id_pengguna')
         ->leftJoin('users', 'pengguna_has_user.id_user', '=', 'users.id')
@@ -32,35 +24,13 @@ class PenggunaController extends Controller
         ->select('pengguna.*')
         ->get();
 
-        // $pengguna = DB::table('pengguna')->get();
-
     return view('admin/pengguna',['peng' => $peng], ["title" => "Peran User"]);
     }
 
 
     public function create(Request $request)
     {
-        //  pengguna::create($request->all());
-
-        // $request->validate([
-        //     'name'=>'required',
-        //     'no_tlp'=>'required',
-        //     'level'=>'required',
-        //     'status'=>'required',
-        //     'email'=>'required',
-        //     'password' => ['required', 'string', 'min:4', 'confirmed'],
-        // ]);
-        // dd($request->level);
-
-        $user= User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'level' => $request['level'],
-            'password' => Hash::make($request['password']),
-        ]);
-
-        $user->assignRole('Admin')->get();
-
+        
         pengguna::create([
             'name'=> $request['name'],
             'no_tlp'=>$request['no_tlp'],
@@ -68,26 +38,33 @@ class PenggunaController extends Controller
             'status'=>$request['status'],
             'email'=>$request['email'],
             'password'=>$request['password'],
-
-        ]);
-
+            
+            ]);
+            
             if($request['level'] == 'level'){
                 $id_user = DB::table('users')->where('name', $request['name'])->value('id');
-
+                
                 $id_pengguna = DB::table('pengguna')->where('name',$request['name'])->value('id_pengguna');
                 $datasave = [
                     'id_user'=>$id_user,
                     'id_pengguna'=>$id_pengguna,
                 ];
-
+                
                 DB::table('pengguna_has_user')->insert($datasave);
-
-            return redirect()->route('pengguna.index')->with('success','Data Berhasil di Input');
-
+                $user= User::create([
+                    'name' => $request['name'],
+                    'email' => $request['email'],
+                    'level' => $request['level'],
+                    'password' => Hash::make($request['password']),
+                ]);
+                $user->assignRole('admin')->get();
+                
+                return redirect()->route('pengguna.index')->with('success','Data Berhasil di Input');
+                
             } elseif($request['level'] == 'manejer'){
-
+                
                 $id_pengguna = DB::table('pengguna')->where('name',$request['name'])->value('id_pengguna');
-
+                
                 $inputan = [
                     'name'=> $request['name'],
                     'notlp'=>$request['no_tlp'],
@@ -99,21 +76,28 @@ class PenggunaController extends Controller
                     'updated_at' => date("Y-m-d H:i:s")
                 ];
                 DB::table('manejer')->insert($inputan);
-
+                
                 $id_manejer = DB::table('manejer')->where('level', $request['level'])->value('id_manejer');
-
+                
                 $datasave = [
                     'id_pengguna'=>$id_pengguna,
                     'id_manejer'=>$id_manejer,
                 ];
-
                 DB::table('pengguna_has_manejer')->insert($datasave);
-
-            return redirect()->route('index')->with('success','Data Berhasil di Input');
-
+                $user= User::create([
+                    'name' => $request['name'],
+                    'email' => $request['email'],
+                    'level' => $request['level'],
+                    'password' => Hash::make($request['password']),
+                ]);
+                $user->assignRole('manejer')->get();
+                
+                activity()->log('Menambahkan Manejer');
+                return redirect()->route('index')->with('success','Data Berhasil di Input');
+                
             } elseif($request['level'] == 'kasir') {
                 $id_pengguna = DB::table('pengguna')->where('name',$request['name'])->value('id_pengguna');
-
+                
                 $inputan = [
                     'name'=> $request['name'],
                     'notlp'=>$request['no_tlp'],
@@ -125,20 +109,29 @@ class PenggunaController extends Controller
                     'updated_at' => date("Y-m-d H:i:s")
                 ];
                 DB::table('kasir')->insert($inputan);
-
-
+                
+                
                 $id_kasir = DB::table('kasir')->where('level', $request['level'])->value('id_kasir');
-
+                
                 $datasave = [
                     'id_pengguna'=>$id_pengguna,
                     'id_kasir'=>$id_kasir,
                 ];
-
+                
                 DB::table('pengguna_has_kasir')->insert($datasave);
+                $user= User::create([
+                    'name' => $request['name'],
+                    'email' => $request['email'],
+                    'level' => $request['level'],
+                    'password' => Hash::make($request['password']),
+                ]);
+                $user->assignRole('kasir')->get();
 
-            return redirect()->route('index');
-
-
+                // dd($request);
+                activity()->log('Menambahkan User Kasir');    
+                return redirect()->route('index');
+                
+                
 
 
 
@@ -150,19 +143,23 @@ class PenggunaController extends Controller
     public function edit($id_pengguna)
     {
     
-        $pengguna = pengguna::find($id_pengguna);
-        $pengguna = DB::table('pengguna')
-        ->leftJoin('users', 'pengguna.id_pengguna', '=', 'users.id')
-        ->leftJoin('kasir','pengguna.id_pengguna','=','kasir.id_kasir')
-        ->leftJoin('manejer','pengguna.id_pengguna','=','manejer.id_manejer')
-        ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
-        ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
-        ->where('pengguna.id_pengguna',)
-        ->select('pengguna.*', 'users.*','kasir.*','manejer.*','model_has_roles.model_id')
+        // $pengguna = pengguna::find($id_pengguna);
+        // $pengguna = DB::table('pengguna')
+        // ->leftJoin('users', 'pengguna.id_pengguna', '=', 'users.id')
+        // ->leftJoin('kasir','pengguna.id_pengguna','=','kasir.id_kasir')
+        // ->leftJoin('manejer','pengguna.id_pengguna','=','manejer.id_manejer')
+        // ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+        // ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
+        // ->where('pengguna.id_pengguna',)
+        // ->select('pengguna.*', 'users.*','kasir.*','manejer.*','model_has_roles.model_id')
 
-        ->get();
-        // dd($pengguna);
+        // ->get();
+
+        $pengguna = DB::table('pengguna')->where('id_pengguna', $id_pengguna)->get();
+        
+        
         return view('admin/edit', compact('pengguna'));
+        // return view('admin/edit');
 
         }
 
@@ -221,6 +218,18 @@ class PenggunaController extends Controller
 //                     'updated_at' => date("Y-m-d H:i:s")
 //             ]);
 
+        // DB::table
+
+
+        // dd($request->id);
+
+        DB::table('pengguna')->where('id_pengguna', $request->id)->update([
+            'level' => $request->level
+        ]);
+
+        return redirect()->route('index');  
+
+
 
         }
 
@@ -233,6 +242,8 @@ class PenggunaController extends Controller
 
     public function destroy($id)
     {
-        //
+        $deleted = DB::table('pengguna')->where('id_pengguna', $id)->delete();
+        activity()->log('Menghapus User');
+        return redirect()->route('index');
     }
 }

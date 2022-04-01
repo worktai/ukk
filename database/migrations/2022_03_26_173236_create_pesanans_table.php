@@ -20,6 +20,7 @@ class CreatePesanansTable extends Migration
             $table->string('nama_menu');
             $table->integer('jumlah');
             $table->integer('meja');
+            $table->string('nama_pegawai');
             $table->integer('total_beli');
             $table->integer('total_bayar');
             $table->integer('kembalian');

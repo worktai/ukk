@@ -38,6 +38,7 @@
                     <div class="form-group">
                         <h5>Harga Menu</h5>
                         <input type="number" name="harga" class="form-control" id="harga" value="{{ $menu[0]->harga}}" readonly>
+                        <input type="hidden" name="nama_menu" class="form-control" id="harga" value="{{ $menu[0]->nama_menu}}" readonly>
                     </div>
                 </div>
             </div>
@@ -74,7 +75,13 @@
             </div>
             
             <div class="row">
-                <div class="col-xs-10 col-sm-10 col-md-10">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <h5>Nama Pegawai</h5>
+                        <input type="text" name="nama_pegawai" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
                     <div class="form-group">
                         <h5>Uang Kembalian</h5> 
                         <input type="number" id="kembalian" name="kembalian" class="form-control" readonly>

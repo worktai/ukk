@@ -51,14 +51,16 @@ class KasirController extends Controller
         Pesanan::create([
             'nama_pemesan'=>$request['nama_pemesan'],
             'harga'=>$request['harga'],
+            'nama_menu'=>$request['nama_menu'],
             'jumlah'=>$request['jumlah'],
             'meja'=>$request['meja'],
             'total_beli'=>$request['total_beli'],
             'total_bayar'=>$request['total_bayar'],
             'kembalian'=>$request['kembalian'],
+            'nama_pegawai'=>$request['nama_pegawai'],
         ]);
         meja::find($request->meja_id)->update(['status' => 'Tidak Tersedia']);
-       
+        activity()->log('Melakukan Transaksi');
         return redirect()->route('dpesan.index');
     }
 

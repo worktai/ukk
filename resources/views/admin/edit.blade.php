@@ -1,49 +1,57 @@
 @extends('layouts.dashboard')
 
 @section('content')
+
+@foreach($pengguna as $p)
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h2>
-                Edit user
-                <hr>
-            </h2>
-                <form action="" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Nama</label>
-                        <input type="text" value="{{$pengguna->name}}" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Nomor Telepon</label>
-                        <input type="number" value="{{$pengguna->no_tlp}}" class="form-control" id="exampleInputEmail1" name="no_tlp" aria-describedby="emailHelp">
-                    </div>
-                    <strong for="">Level Pegawai</strong>
-                    <div class="input-group mb-3">
-                        <select class="form-control" name="level" id="level">
-                            <option value="manejer" @if($pengguna->level == 'manejer') selected @endif>manejer</option>
-                            <option value="kasir" @if($pengguna->level == 'kasir') selected @endif>kasir</option>
-                        </select>
-                    </div>
-                    </div>
-                    <strong for="">Status Pegawai</strong>
-                    <div class="input-group mb-3">
-                        <select class="form-control" name="status" id="status">
-                            <option value="aktif" @if($pengguna->status == 'aktif') selected @endif>aktif</option>
-                            <option value="nonaktif" @if($pengguna->status == 'nonaktif') selected @endif>nonaktif</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">email</label>
-                        <input type="email" value="{{$pengguna->email}}"  class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
-                    </div>
-                        </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                </form>
-                    </div>
+
+        <div class="card-header d-flex justify-content-between">
+        <h3>Edit User</h3>
+        </div>
+
+            <form action="/pengguna/edit/{{ $p->id_pengguna }}" method='post'>
+            @csrf
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    Nama Pengguna <input class="form-control" type="text" name="nama_pengguna" required="required" readonly value="{{ $p->name }}">
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    No Telepon <input class="form-control" type="number" name="no_telp" required="required"  readonly value="{{ $p->no_tlp }}"> 
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    Level<select name="level" id="tipe_kamar" class="form-control" >
+                        <option selected class="form-select form-check disabled text-muted" aria-label="disabled select example" disabled>Pilih salah satu Level</option>
+                        <option value="kasir">Kasir</option>
+                        <option value="manejer">Manajer</option>
+                    </select>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    Status<select name="status" id="tipe_kamar" class="form-control" >
+                    <option selected class="form-select form-check text-muted" aria-label="disabled select example" disabled value="{{ $p->status }}">{{ $p->status }}</option>
+                    </select>  
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    Email <input class="form-control" type="email" name="email" required="required"  readonly value="{{ $p->email }}">    
+                </div>
+
+                <div class="modal-footer">
+                    <input class="btn btn-success ml-3" type="submit" value="Simpan Data">
+                </div>
+            </div>
+            </form>
+
         </div>
     </div>
 </div>
+@endforeach
+
 @endsection

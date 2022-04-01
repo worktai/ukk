@@ -4,16 +4,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-
-            <h2>
-                Pengguna user
-                <hr>
-            </h2>
-            <!-- Button trigger modal -->
+        <div class="card-header d-flex justify-content-between">
+            <h2>Pengguna user</h2>
+            <!-- Modal Tambah User: MANEJER ATAU KASIR -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 TAMBAH USER
             </button>
-
+        </div>
             <!-- MODAL CREATE USER -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -68,8 +65,8 @@
                     </div>
                 </div>
             </div>
-            <table class="table">
-                <tr>
+            <table class="table table-bordered">
+                <tr class="text-primary">
                     <th>Nama</th>
                     <th>No Telepon</th>
                     <th>Status</th>
@@ -86,7 +83,10 @@
                     <td>{{$p->level}}</td>
                     <td>{{$p->email}}</td>
                     <td>{{$p->password}}</td>
-                    <td><a href="{{ route('pengguna.edit',$p->id_pengguna) }}" class="btn btn-warning btn-sm">Edit</a></td>
+                    <td>
+                    <a href="/pengguna/edit/{{ $p->id_pengguna }}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{{route('pengguna.destroy',$p->id_pengguna)}}" class="btn btn-danger btn-sm">Hapus</a>
+                    </td>
 
                 </tr>
                 @endforeach

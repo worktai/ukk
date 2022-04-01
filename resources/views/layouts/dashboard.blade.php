@@ -45,7 +45,7 @@
                             {{-- ADMIN DIBAWAH --}}
                             @if(auth()->user()->level=="Admin")
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('utama')}}">Aktivitas Pegawai</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('aktivitas')}}">Aktivitas Pegawai</a>
                             </div>
                             <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="{{route('index')}}">Peran User</a>
@@ -66,13 +66,19 @@
                                 <a class="nav-link active" aria-current="page" href="{{route('menu.index')}}">Menu Makanan/Minuman</a>
                             </div>
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('note')}}">Catatan transaksi</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('laporantransaksi')}}">Catatan transaksi</a>
+                            </div>
+                            <div class="navbar-nav">
+                                <a class="nav-link active" aria-current="page" href="{{route('haribulan')}}">Laporan Pendapatan</a>
                             </div>
                             <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="{{route('kategori.index')}}">Kategori</a>
                             </div>
                             <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="{{route('meja.index')}}">Meja</a>
+                            </div>
+                            <div class="navbar-nav">
+                                <a class="nav-link active" aria-current="page" href="{{route('aktivitaspegawai')}}">Aktivitas Pegawai</a>
                             </div>
                             @endif
 

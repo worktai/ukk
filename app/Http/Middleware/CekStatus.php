@@ -26,20 +26,19 @@ class CekStatus
         // }
         // return $next($request);
         $levels = array_slice(func_get_args(), 2);
-    
         foreach ($levels as $level) { 
             $level= \Auth::user()->level;
             if( $level== $level){
                 return $next($request);
             }
-        elseif ($level== 'manejer') {
-              return redirect('menu_manejer');
+        elseif ($level=='manejer') {
+              return redirect('menu.index');
             
-        }elseif ($level== 'kasir') {
-            return redirect('transaksi');
+        }elseif ($level=='kasir') {
+            return redirect('catatan_transaksi');
           
       }}
     
-        return redirect('/home');
+        // return redirect('utama');
     }
 }

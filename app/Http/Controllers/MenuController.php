@@ -21,7 +21,8 @@ class MenuController extends Controller
         ]);
     }
     public function store(Request $request)
-    {
+    {       
+
         
         $request->validate([
      
@@ -53,26 +54,44 @@ class MenuController extends Controller
         $kat = Kategori::find($request->kategori_id);
         $jml = $kat->jumlah + 1;
         $kat->update(['jumlah' => $jml]);
-   
+        activity()->log('Menambahkan Menu');
         return redirect()->route('menu.index');
     }
 
     public function edit($id)
     {
-        $menu = menu::find($id);
-        return view('manejer.editmenu', ['menu' => $menu]);
+        // $menu = menu::find($id);
+        // return view('manejer.editmenu', ['menu' => $menu]);
+    
+        $menu = DB::table('menus')->where('id', $id)->get();
+        
+        return view('manejer/editmenu', compact('menu'));
+    
     }
     public function update(Request $request, $id)
     {
-        $menu = menu::find($id);
-        $menu->update($request->all());
-        return redirect()->route('menu.index');
-    }
+        // $menu = menu::find($id);
+        // $menu->update($request->all());
+        // activity()->log('Mengedit Menu');
+        // return redirect()->route('menu.index');
+    
+        // dd($request->foto);
+
+        DB::table('menus')->where('id', $id)->update([
+            'nama_menu' => $request->nama_menu,
+            'harga' => $request->harga,
+            'foto' => $request->foto
+        ]);
+        activity()->log('Mengedit Menu');
+        return redirect()->route('menu.index'); 
+
+        }
 
     public function destroy($id)
     {
         // dd($id);
         $deleted = DB::table('menus')->where('id', $id)->delete();
+        activity()->log('Menghapus Menu');
         return redirect()->route('menu.index');
     }
 }

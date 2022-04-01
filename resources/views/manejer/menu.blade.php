@@ -13,7 +13,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered">
-                    <tr>
+                    <tr class="text-primary">
                         <th>ID MENU</th>
                         <th>Nama menu</th>
                         <th>Kategori</th>
@@ -30,7 +30,7 @@
                         <td><img src="{{asset('fotohotel/'.$m->foto)}}" alt="" style="width:100px";></td>
                         <td>
                         <form action="{{ route('menu.destroy', $m->id) }}" method="POST">
-                        <a href="{{ route('menu.edit',$m->id) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ route('menu.edit', $m->id ) }}" class="btn btn-primary">Edit</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Hapus</button>

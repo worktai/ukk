@@ -6,6 +6,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MejaController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\PesananController;
+use App\Http\Controllers\ManejerController;
 
 Route::get('/', function () {
     return view('/welcome');
@@ -15,39 +16,52 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-// ADMIN ( ROUTE DATA USER CRU (MELIHAT, EDIT) )
-Route::get('pengguna/index', 'PenggunaController@index')->name('index')->middleware('cekstatus:admin');
-Route::post('/pengguna/create', 'PenggunaController@create')->name('pengguna.create')->middleware('cekstatus:admin');
-Route::get('pengguna/{id}/edit', 'PenggunaController@edit')->name('pengguna.edit')->middleware('cekstatus:admin');
-
-
 // HALAMAN ADMIN
-Route::get('/utama', function() {
-    return view('admin.utama', ["title" => "Log Aktivitas Pegawai"]);
-})->name('utama')->middleware('cekstatus:admin');
+Route::get('/aktivitas', 'AktivitasController@aktivitas')->name('aktivitas')->middleware('cekstatus:admin');
+
+// ADMIN ( ROUTE DATA USER CRU (MELIHAT, EDIT) )
+Route::middleware('role:admin')->get('pengguna/index', 'PenggunaController@index')->name('index');
+Route::middleware('role:admin')->post('/pengguna/create', 'PenggunaController@create')->name('pengguna.create');
+Route::middleware('role:admin')->get('pengguna/{id}/edit', 'PenggunaController@edit')->name('pengguna.edit');
+Route::middleware('role:admin')->get('pengguna/{id}/delete', 'PenggunaController@destroy')->name('pengguna.destroy');
+
+Route::middleware('role:admin')->get('pengguna/edit/{id}', 'PenggunaController@edit');
+Route::middleware('role:admin')->post('pengguna/edit/{id}', 'PenggunaController@update');
 
 
 // HALAMAN KASIR
-Route::get('/catatan_transaksi', 'KasirController@show')->name('catatan_transaksi')->middleware('cekstatus:kasir');
+Route::middleware('role:kasir')->get('/catatan_transaksi', 'KasirController@show')->name('catatan_transaksi');
 
 // KASIR -> FOLDER PELANGGAN -> HALAMAN ORDER DAN TRANSAKSI:
-Route::resource('dpesan','KasirController');
-Route::post('pelanggan.index', 'KasirController@simpan')->name('simpan');
+Route::middleware('role:kasir')->resource('dpesan','KasirController');
+Route::middleware('role:kasir')->post('pelanggan.index', 'KasirController@simpan')->name('simpan');
 
 
 
 // HALAMAN MANEJER
-Route::get('/note', function() {
-    return view('manejer.note', ["title" => "Log Aktivitas Pegawai"]);
-})->name('note')->middleware('cekstatus:manejer');
-Route::get('laporantransaksi', [App\Http\Controllers\ManagerController::class, 'laporantransaksi'])->name('laporantransaksi')->middleware('cekstatus:manager');
+// MANEJER -> HALAMAN CATATAN TRANSAKSI PENCARIAN MELALUI TANGGAL DAN NAMA
+Route::middleware('role:manejer')->get('/note', 'ManejerController@laporantransaksi')->name('laporantransaksi');
+Route::middleware('role:manejer')->get('caritgl','ManejerController@caritgl')->name('caritgl');
+
+// MANEJER -> HALAMAN LAPORAN HARIAN DAN BULANAN
+Route::middleware('role:manejer')->get('/laporharibulan', 'ManejerController@haribulan')->name('haribulan');
 
 
 // MANEJER -> HALAMAN DATA KATAGORI. CONTOHNYA MAKANAN/MINUMAN
-route::resource('kategori','KategoriController');
+route::middleware('role:manejer')->resource('kategori','KategoriController');
 
 // MANEJER -> HALAMAN DATA MENU. CONTOHNYA NASI PADANG
-route::resource('menu','MenuController');
+route::middleware('role:manejer')->resource('menu','MenuController');    
+// Route::get('/menu/edit/{id}', 'MenuController@edit');
+Route::middleware('role:manejer')->post('/menu/edit/{id}', 'MenuController@update');
+
+
+
 
 // MANEJER -> HALAMAN DATA MEJA
-route::resource('meja','MejaController');
+route::middleware('role:manejer')->resource('meja','MejaController');
+
+// MANEJER -> LOG AKTIVITAS PEGAWAI
+Route::middleware('role:manejer')->middleware('role:manejer')->get('/aktivitaspegawai', function() {
+    return view('manejer.aktivitaspegawai');
+})->name('aktivitaspegawai');

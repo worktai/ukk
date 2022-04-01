@@ -23,6 +23,7 @@ class MejaController extends Controller
             'status' => 'required'
         ]);
         meja::create($request->all());
+        activity()->log('Menambahkan Meja');
         return redirect()->route('meja.index');
     }
 
@@ -41,12 +42,14 @@ class MejaController extends Controller
         meja::where('meja_id',$id)->update([
             'status'=>$request['status'],
         ]);
+        activity()->log('Mengubah Meja');
         return redirect()->route('meja.index');
     }
 
     public function destroy($id)
     {   
         $deleted = DB::table('mejas')->where('meja_id', $id)->delete();
+        activity()->log('Menghapus Meja');
         return redirect()->route('meja.index');
     }
 }

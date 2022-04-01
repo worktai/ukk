@@ -11,7 +11,7 @@
                 <div class="table-responsive">
                
                     <table class="table table-bordered">
-                        <tr>
+                        <tr class="text-primary">
                             <th>Id</th>
                             <th>No Meja</th>
                             <th>Status</th>

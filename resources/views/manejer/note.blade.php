@@ -5,62 +5,53 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
 
-            <div class="card-header d-flex justify-content-between">
+            <div class="card-header">
                 <div class="pull-left">
                     <h2>Data Transaksi</h2>
                 </div>
             </div>
             
-                <form action="{{route('laporantransaksi')}}" method="get">
-                    @csrf
-                    <div class="form-group row">
-                        <label for="from" class="col-form-label col-sm-2">Dari Tanngal</label>
-                        <div class="col-sm-3">
-                            <input type="date" class="form-control input-sm w-100" id="from" name="from"  required>
-                        </div>
-                        <label for="to" class="col-form-label col-sm-2">Sampai Tanggal</label>
-                        <div class="col-sm-3">
-                            <input type="date" class="form-control input-sm w-100" id="to" name="to" required>
-                        </div>
-                        <div class="col-sm-2">
-                        <button type="submit" class="btn btn-primary">Cari</button>
-                        </div>
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-4">
+                        <form action="{{ url('note') }}" Method="GET">
+                            <input type="date" placeholder="Cari Tanggal" name="date" value="{{ $request->date }}" class="form-control w-50 d-inline">
+                            <button type="submit" class="btn btn-primary mb-1">Cari</button>
+                        </form>
                     </div>
-                </form>
-
-            @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-            <p>{{ $message }}</p>
+                    <div class="col-4">
+                        <form class="form" method="get" action="{{ url('note') }}">
+                            <input type="text" name="cari" class="form-control w-50 d-inline" id="search" placeholder="Cari Nama Pegawai" value="{{$request->cari}}"> 
+                            <button type="submit" class="btn btn-primary mb-1">Cari</button>
+                        </form>
+                    </div>
+                </div>
+                
+             
             </div>
-            @endif
-            @if ($message = Session::get('error'))
-            <div class="alert alert-danger">
-            <p>{{ $message }}</p>
-            </div>
-            @endif
             <div class="container-fluid">
                 <div class="row">
-                    <table class="table table-hover">
-                        <tr>
+                    <table class="table table-hover table-bordered">
+                        <tr class="text-primary"s>
                             <th>Nama Pemesan</th>
-                            <th>Harga Menu</th>
+                            <th>Nama Menu</th>
                             <th>Jumlah Menu</th>
-                            <th>Nomor Meja</th>
-                            <th>Harga Pesanan</th>
-                            <th>Bayaran Pemesan</th>
-                            <th>Uang Kembalian</th>
+                            <!-- TOTAL HARGA MENU YANG DIBELI PEMESAN/PELANGGAN -->
+                            <th>Total Harga Menu</th>
+                            <th>Nama Pegawai</th>
+                            <th>Tanggal</th>
                         </tr>
                         @foreach($data as $u)
                         <tr>
-                        <td>{{$u->nama_pelanggan}}</td>
-                        <td>{{$u->nama_menu}}</td>
-                        <td>{{$u->jumlah}}</td>
-                        <td>{{$u->total_harga}}</td>
-                        <td>{{$u->nama_pegawai}}</td>
-                        <td>
-                            {{$u->tanggal}}
-                            <!-- <a href="createkasir" class="btn btn-warning">Pesan</a> -->
-                        </td>
+                            <td>{{$u->nama_pemesan}}</td>
+                            <td>{{$u->nama_menu}}</td>
+                            <td>{{$u->jumlah}}</td>
+                            <td>{{$u->total_beli}}</td>
+                            <td>{{$u->nama_pegawai}}</td>
+                            <td>
+                                {{$u->created_at}}
+                                <!-- <a href="createkasir" class="btn btn-warning">Pesan</a> -->
+                            </td>
                         </tr>
                         @endforeach
                     </table>

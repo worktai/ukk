@@ -17,6 +17,7 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         kategori::create($request->all());
+        activity()->log('Menambah Kategori Menu');
         return redirect()->route('kategori.index');
     }
 
@@ -33,6 +34,7 @@ class KategoriController extends Controller
     public function destroy($id)
     {
         $deleted = DB::table('kategoris')->where('id', $id)->delete();
+        activity()->log('Menghapus Kategori');
         return redirect()->route('kategori.index');
     }
 }
