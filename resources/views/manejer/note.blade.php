@@ -10,29 +10,52 @@
                     <h2>Data Transaksi</h2>
                 </div>
             </div>
-            
+
+            <div class="card-header">
+
+                <form action="{{route('caritgl')}}" method="get">
+                    @csrf
+                    <div class="form-group row">
+                        <label for="from" class="col-form-label col-sm-2">Dari Tanggal</label>
+                        <div class="col-sm-3">
+                            <input type="date" class="form-control input-sm w-100" id="from" name="from">
+                        </div>
+                        <label for="to" class="col-form-label col-sm-2">Sampai Tanggal</label>
+                        <div class="col-sm-3">
+                            <input type="date" class="form-control input-sm w-100" id="to" name="to">
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary mb-1">Cari</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
             <div class="card-header">
                 <div class="row">
                     <div class="col-4">
-                        <form action="{{ url('note') }}" Method="GET">
-                            <input type="date" placeholder="Cari Tanggal" name="date" value="{{ $request->date }}" class="form-control w-50 d-inline">
+                        <form action="{{route('tgltertentu')}}" method="get">
+                            @csrf
+                            <input type="date" placeholder="Cari Tanggal" name="search" class="form-control w-75 d-inline">
                             <button type="submit" class="btn btn-primary mb-1">Cari</button>
                         </form>
                     </div>
                     <div class="col-4">
-                        <form class="form" method="get" action="{{ url('note') }}">
-                            <input type="text" name="cari" class="form-control w-50 d-inline" id="search" placeholder="Cari Nama Pegawai" value="{{$request->cari}}"> 
+                        <form action="{{route('laporantransaksi')}}" method="get">
+                            @csrf
+                            <input type="text" placeholder="Cari Nama Pegawai" name="search" class="form-control w-75 d-inline">
                             <button type="submit" class="btn btn-primary mb-1">Cari</button>
                         </form>
                     </div>
                 </div>
-                
-             
+
+
             </div>
             <div class="container-fluid">
                 <div class="row">
                     <table class="table table-hover table-bordered">
-                        <tr class="text-primary"s>
+                        <tr class="text-primary" s>
                             <th>Nama Pemesan</th>
                             <th>Nama Menu</th>
                             <th>Jumlah Menu</th>
@@ -41,7 +64,7 @@
                             <th>Nama Pegawai</th>
                             <th>Tanggal</th>
                         </tr>
-                        @foreach($data as $u)
+                        @foreach($data as $key=>$u)
                         <tr>
                             <td>{{$u->nama_pemesan}}</td>
                             <td>{{$u->nama_menu}}</td>
@@ -56,8 +79,8 @@
                         @endforeach
                     </table>
                 </div>
-       
+
+            </div>
         </div>
     </div>
-</div>
-@endsection
+    @endsection

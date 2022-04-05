@@ -42,9 +42,11 @@ Route::middleware('role:kasir')->post('pelanggan.index', 'KasirController@simpan
 // MANEJER -> HALAMAN CATATAN TRANSAKSI PENCARIAN MELALUI TANGGAL DAN NAMA
 Route::middleware('role:manejer')->get('/note', 'ManejerController@laporantransaksi')->name('laporantransaksi');
 Route::middleware('role:manejer')->get('caritgl','ManejerController@caritgl')->name('caritgl');
+Route::middleware('role:manejer')->get('tgltertentu','ManejerController@tgltertentu')->name('tgltertentu');
+
 
 // MANEJER -> HALAMAN LAPORAN HARIAN DAN BULANAN
-Route::middleware('role:manejer')->get('/laporharibulan', 'ManejerController@haribulan')->name('haribulan');
+Route::middleware('role:manejer')->get('/laporharibulan', 'ManejerController@laporharibulan')->name('laporharibulan');
 
 
 // MANEJER -> HALAMAN DATA KATAGORI. CONTOHNYA MAKANAN/MINUMAN
@@ -61,7 +63,6 @@ Route::middleware('role:manejer')->post('/menu/edit/{id}', 'MenuController@updat
 // MANEJER -> HALAMAN DATA MEJA
 route::middleware('role:manejer')->resource('meja','MejaController');
 
-// MANEJER -> LOG AKTIVITAS PEGAWAI
-Route::middleware('role:manejer')->middleware('role:manejer')->get('/aktivitaspegawai', function() {
-    return view('manejer.aktivitaspegawai');
-})->name('aktivitaspegawai');
+// MANEJER -> LOG AKTIVITAS PEGAWAI DI HALAMAN MANEJER
+Route::get('/aktivitaspegawai', 'AktivitasController@aktivitas2')->name('aktivitaspegawai');
+

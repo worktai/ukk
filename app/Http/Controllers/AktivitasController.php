@@ -21,4 +21,14 @@ class AktivitasController extends Controller
         $activity_log= ActivityLog::with('user')->limit(50)->orderBy('id','DESC')->get();
         return view('admin.utama', compact('user','meja','menu','pesanan','kategori','activity_log'));
     }
+    public function aktivitas2()
+    {
+        $user = User::select()->count();
+        $meja = meja::select()->count();
+        $menu = menu::select()->count();
+        $pesanan = pesanan::select()->count();
+        $kategori = kategori::select()->count();
+        $activity_log= ActivityLog::with('user')->limit(50)->orderBy('id','DESC')->get();
+        return view('manejer.aktivitaspegawai', compact('user','meja','menu','pesanan','kategori','activity_log'));
+    }
 }

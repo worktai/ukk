@@ -69,7 +69,7 @@
                                 <a class="nav-link active" aria-current="page" href="{{route('laporantransaksi')}}">Catatan transaksi</a>
                             </div>
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('haribulan')}}">Laporan Pendapatan</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('laporharibulan')}}">Pendapatan Harian dan Bulanan</a>
                             </div>
                             <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="{{route('kategori.index')}}">Kategori</a>
