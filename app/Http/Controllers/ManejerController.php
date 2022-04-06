@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\pesanan;
 use Illuminate\Http\Request;
+use DB;
+use Carbon\Carbon;
 
 class ManejerController extends Controller
 {
@@ -12,7 +14,7 @@ class ManejerController extends Controller
         $data =pesanan::where('nama_pegawai','like','%'.$keyword.'%')->get();
         //  dd($keyword);
        return view('manejer.note', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
-        
+
     }
     public function caritgl(Request $request)
     {
@@ -31,9 +33,29 @@ class ManejerController extends Controller
 
     public function laporharibulan(Request $request)
     {
-       
-       return view('manejer.laporharibulan');
+        $datass = pesanan::select([
+            DB::raw('sum(total_beli) as `sum`'),
+            DB::raw(' MONTH(created_at) month')
+            ])->groupBy('month')
+            ->where('created_at', '>=',Carbon::now()->subMonth())
+            ->get();
+        $outpat = [];
+        foreach($datass as $entry) {
+            $outpat= $entry->sum;
+        }
+        $data = pesanan::select([
+            DB::raw('sum(total_beli) as `sum`'),
+            DB::raw(' DATE(created_at) day')
+            ])->groupBy('day')
+            ->where('created_at', '>=',Carbon::now()->subweeks())
+            ->get();
+        $output = [];
+        foreach($data as $entry) {
+            $output= $entry->sum;
+        }
+        //  dd($output);
+       return view('manejer.laporharibulan', ['outpat'=>$outpat],['output'=>$output]);
     }
 
-    
+
 }
