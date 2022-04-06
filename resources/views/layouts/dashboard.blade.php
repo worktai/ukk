@@ -20,8 +20,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    {{-- BOOTSTRAP ICON --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
-<body>
+<body style="font-family: arial;">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -36,49 +39,49 @@
                     <!-- Left Side Of Navbar -->
 
                     <ul class="navbar-nav mr-auto">
-                        <a class="navbar-brand">WebKasir</a>
+                        <a class="navbar-brand"><i class="bi bi-shop"></i> WebKasir</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+                            {{-- <span class="navbar-toggler-icon"></span> --}}
                         </button>
                         <nav class="collapse navbar-collapse" id="navbarNavAltMarkup">
-
+ 
                             {{-- ADMIN DIBAWAH --}}
                             @if(auth()->user()->level=="Admin")
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('aktivitas')}}">Aktivitas Pegawai</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('aktivitas')}}"><i class="bi bi-activity"></i> Aktivitas Pegawai </a>
                             </div>
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('index')}}">Peran User</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('index')}}"><i class="bi bi-person-plus"></i> Peran User </a>
                             </div>
 
                             {{-- KASIR DIBAWAH --}}
                             @elseif(auth()->user()->level=="kasir")
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('catatan_transaksi')}}">Catatan Transaksi</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('catatan_transaksi')}}"><i class="bi bi-piggy-bank"></i> Catatan Transaksi </a>
                             </div>
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('dpesan.index')}}">Pesan Order</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('dpesan.index')}}"><i class="bi bi-cart"></i> Pesan Order </a>
                             </div>
 
                             {{-- MANEJER DIBAWAH --}}
                             @elseif(auth()->user()->level=="manejer")
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('menu.index')}}">Menu Makanan/Minuman</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('menu.index')}}"><i class="bi bi-menu-up"></i> Data Menu </a>
                             </div>
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('laporantransaksi')}}">Catatan transaksi</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('laporantransaksi')}}"><i class="bi bi-piggy-bank"></i> Data Transaksi </a>
                             </div>
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('laporharibulan')}}">Pendapatan Harian dan Bulanan</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('laporharibulan')}}"><i class="bi bi-clipboard2"></i> Laporan Pendapatan </a>
                             </div>
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('kategori.index')}}">Kategori</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('kategori.index')}}"><i class="bi bi-bookmark"></i> Kategori </a>
                             </div>
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('meja.index')}}">Meja</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('meja.index')}}"><i class="bi bi-tablet-landscape"></i> Meja </a>
                             </div>
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('aktivitaspegawai')}}">Aktivitas Pegawai</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('aktivitaspegawai')}}"><i class="bi bi-activity"></i> Aktivitas Pegawai</a>
                             </div>
                             @endif
 
@@ -102,11 +105,13 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
+                                <i class="bi bi-person-fill"></i>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+                                    <i class="bi bi-box-arrow-in-right"></i>
                                     {{ __('Logout') }}
                                 </a>
 

@@ -5,13 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
 
-            <div class="card-header">
+            <div class="card-header bg-dark">
                 <div class="pull-left">
-                    <h2>Data Transaksi</h2>
+                    <h2 class="text-light">Data Transaksi</h2>
                 </div>
             </div>
 
-            <div class="card-header">
+            <div class="card-header bg-dark text-white">
 
                 <form action="{{route('caritgl')}}" method="get">
                     @csrf
@@ -25,37 +25,36 @@
                             <input type="date" class="form-control input-sm w-100" id="to" name="to">
                         </div>
                         <div class="col-sm-2">
-                            <button type="submit" class="btn btn-primary mb-1">Cari</button>
+                            <button type="submit" class="btn btn-secondary text-light mb-1">Cari</button>
                         </div>
                     </div>
                 </form>
 
             </div>
 
-            <div class="card-header">
+            <div class="card-header bg-dark">
                 <div class="row">
                     <div class="col-4">
                         <form action="{{route('tgltertentu')}}" method="get">
                             @csrf
                             <input type="date" placeholder="Cari Tanggal" name="search" class="form-control w-75 d-inline">
-                            <button type="submit" class="btn btn-primary mb-1">Cari</button>
+                            <button type="submit" class="btn btn-secondary text-light">Cari</button>
                         </form>
                     </div>
                     <div class="col-4">
                         <form action="{{route('laporantransaksi')}}" method="get">
                             @csrf
                             <input type="text" placeholder="Cari Nama Pegawai" name="search" class="form-control w-75 d-inline">
-                            <button type="submit" class="btn btn-primary mb-1">Cari</button>
+                            <button type="submit" class="btn btn-secondary text-light mb-1">Cari</button>
                         </form>
                     </div>
                 </div>
-
-
             </div>
+            <hr>
             <div class="container-fluid">
                 <div class="row">
                     <table class="table table-hover table-bordered">
-                        <tr class="text-primary" s>
+                        <tr class="text-dark" s>
                             <th>Nama Pemesan</th>
                             <th>Nama Menu</th>
                             <th>Jumlah Menu</th>

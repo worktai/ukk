@@ -34,7 +34,7 @@
                     </div>
                         <h5>{{ $m->foto }}</h5>
                     <div class="modal-footer">
-                    <input class="btn btn-success ml-3" type="submit" value="Simpan Data">
+                    <input class="btn btn-warning" type="submit" value="Simpan Data">
                     </div>
                 </div>
 

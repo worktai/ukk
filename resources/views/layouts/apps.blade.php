@@ -21,10 +21,13 @@
     <!-- Bootstrap CSS -->
     @yield('style')
 
+    {{-- BOOTSTRAP ICON --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="font-family: arial;">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -39,7 +42,7 @@
                     <!-- Left Side Of Navbar -->
 
                     <ul class="navbar-nav mr-auto">
-                        <a class="navbar-brand">WebKasir</a>
+                        <a class="navbar-brand"><i class="bi bi-shop"></i> WebKasir</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -57,10 +60,10 @@
                             {{-- KASIR DIBAWAH --}}
                             @elseif(auth()->user()->level=="kasir")
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('catatan_transaksi')}}">Catatan Transaksi</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('catatan_transaksi')}}"><i class="bi bi-piggy-bank"></i> Catatan Transaksi</a>
                             </div>
                             <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="{{route('dpesan.index')}}">Pesan Order</a>
+                                <a class="nav-link active" aria-current="page" href="{{route('dpesan.index')}}"><i class="bi bi-cart"></i> Pesan Order</a>
                             </div>
 
                             {{-- MANEJER DIBAWAH --}}
@@ -97,15 +100,15 @@
                         @endif
                         @else
 
-                            <a class="text-dark" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <a class="text-dark" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                            {{ __('Logout') }}
+                        </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-<!--                                 
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                        <!--                                 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}

@@ -5,11 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
 
-            <div class="card-header">
+            <div class="card-header bg-dark">
                 <div class="pull-left">
-                    <h2>Pendapatan Harian dan Bulanan</h2>
+                    <h2 class="text-light">Pendapatan Harian dan Bulanan</h2>
                 </div>
             </div>
+            <hr>
 
             <div class="container-fluid">
                 <div class="row">

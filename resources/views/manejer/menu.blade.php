@@ -4,16 +4,16 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-        <div class="card-header d-flex justify-content-between">
+        <div class="card-header d-flex justify-content-between bg-dark text-light">
         <h4>Menu Makanan dan Minuman</h4>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-secondary text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Tambah Menu
         </button>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered">
-                    <tr class="text-primary">
+                <table class="table table-hover table-bordered">
+                    <tr class="text-black">
                         <th>ID MENU</th>
                         <th>Nama menu</th>
                         <th>Kategori</th>
@@ -30,7 +30,7 @@
                         <td><img src="{{asset('fotohotel/'.$m->foto)}}" alt="" style="width:100px";></td>
                         <td>
                         <form action="{{ route('menu.destroy', $m->id) }}" method="POST">
-                        <a href="{{ route('menu.edit', $m->id ) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ route('menu.edit', $m->id ) }}" class="btn btn-warning btn-hover text-dark">Edit</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Hapus</button>

@@ -35,7 +35,7 @@
                         <span class="text-danger" style="display: none">status harus dipilih</span>
                     </div>
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-warning">Ubah</button>
+                      <button type="submit" class="btn btn-warning">Simpan Data</button>
                     </div>
                   </form>
       </div>

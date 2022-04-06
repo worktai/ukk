@@ -9,12 +9,15 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+    {{-- BOOTSTRAP ICON --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
     <!-- Styles -->
     <style>
         html,
         body {
             background-color: #fff;
-            color: #636b6f;
+            color: #92A8d1;
             font-family: 'Nunito', sans-serif;
             font-weight: 200;
             height: 100vh;
@@ -43,10 +46,18 @@
 
         .content {
             text-align: center;
+            background: white;
+          
         }
 
         .title {
-            font-size: 84px;
+            font-size: 54px;
+            font-family: Lucida Console;
+            color: black;
+            transition: 0.7s;
+        }
+        .title:hover {
+            color: #955251;
         }
 
         .links>a {
@@ -62,10 +73,10 @@
         .m-b-md {
             margin-bottom: 30px;
         }
-
     </style>
 </head>
 <body>
+
     <div class="flex-center position-ref full-height">
         @if (Route::has('login'))
         <div class="top-right links">
@@ -83,9 +94,10 @@
 
         <div class="content">
             <div class="title m-b-md">
-                Selamat Datang Di Web Kasir
+            <i class="bi bi-house-heart-fill"></i>
+            <u> Selamat Datang Di Web Kasir</u>
+               
             </div>
-
         </div>
     </div>
 </body>

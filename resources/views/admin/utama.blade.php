@@ -4,12 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <div class="card-header d-flex justify-content-between">
-                <h2>Aktivitas Log Pegawai</h2>
+            <div class="card-header bg-dark">
+                <h2 class="text-light"><u>Aktivitas Log Pegawai</u></h2>
             </div>
+            <hr>
+            <div class="card-body">
                 <div class="block-content">
-                    <table class="table table-bordered table-hover">
-                    <tr class="text-danger">
+                    <table class="table table-bordered">
+                    <tr class="bg-dark text-light bg-hover-ligh">
                         <th>Nama User</th>
                         <th>Keterangan Aktivitas Pegawai</th>
                         <th>Tanggal</th>
@@ -23,7 +25,7 @@
                     @endforeach
                     </table>
                 </div>
-                
+            </div>
             </div>
         </div>
     </div>
