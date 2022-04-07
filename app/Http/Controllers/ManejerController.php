@@ -56,6 +56,9 @@ class ManejerController extends Controller
         //  dd($output);
        return view('manejer.laporharibulan', ['outpat'=>$outpat],['output'=>$output]);
     }
+    public function laporhariini() {
+        
+    }
 
 
 }

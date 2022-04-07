@@ -9,6 +9,11 @@
                     <h2 class="text-light">Data Transaksi</h2>
                 </div>
             </div>
+            <div class="card-header d-flex justify-content-between bg-light">
+                <div class="pull-left">
+                    <h5 class="text-dar">Hari ini @foreach($pesanan as $trans){{$trans->created_at}}@endforeach</h5>
+                </div>
+            </div>
             <hr>
             <table class="table table-hover table-bordered">
                 <tr class="text-dark">

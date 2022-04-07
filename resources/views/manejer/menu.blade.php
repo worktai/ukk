@@ -14,7 +14,7 @@
             <div class="table-responsive">
                 <table class="table table-hover table-bordered">
                     <tr class="text-black">
-                        <th>ID MENU</th>
+                        {{-- <th>ID MENU</th> --}}
                         <th>Nama menu</th>
                         <th>Kategori</th>
                         <th>Harga</th>
@@ -23,7 +23,7 @@
                     </tr>
                     @foreach($datamenu as $m)
                     <tr>
-                        <td>{{ $m->id }}</td>
+                        {{-- <td>{{ $m->id }}</td> --}}
                         <td>{{ $m->nama_menu }}</td>
                         <td>{{ $m->kategori->nama_kategori}}</td>
                         <td>{{ $m->harga}}</td>
@@ -61,12 +61,12 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Nama</strong>
-                    <input type="text" name="nama_menu" class="form-control" placeholder="cth:NasGor Padang">
+                    <input type="text" name="nama_menu" class="form-control" placeholder="cth:NasGor Padang" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="kategori">Kategori</label>
-                <select class="form-control" name="kategori_id" id="kategori">
+                <select class="form-control" name="kategori_id" id="kategori" required>
                   <option value="">Pilih kategori</option>
                   @foreach($datakategori as $kategori)
                     <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
@@ -75,12 +75,12 @@
             </div>
             <div class="form-group">
                 <strong>Harga</strong>
-                <input type="price" name="harga" class="form-control" placeholder="cth:10000">
+                <input type="price" name="harga" class="form-control" placeholder="cth:10000" required>
             </div>
             </div>
             <label for="">Gambar</label>
             <div class="input-group mb-3">
-                <input type="file" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="foto">
+                <input type="file" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="foto" required>
             </div>
     
       </div>

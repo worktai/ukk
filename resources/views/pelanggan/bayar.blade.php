@@ -75,12 +75,12 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-6">
+                {{-- <div class="col-xs-6 col-sm-6 col-md-6">
                     <div class="form-group">
                         <h5>Nama Pegawai</h5>
                         <input type="text" name="nama_pegawai" class="form-control">
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-xs-6 col-sm-6 col-md-6">
                     <div class="form-group">
                         <h5>Uang Kembalian</h5>

@@ -25,7 +25,6 @@ class MenuController extends Controller
 
         
         $request->validate([
-     
             'foto' => 'image|file',
             'nama_menu' => 'required',
             'kategori_id' => 'required',
@@ -60,9 +59,9 @@ class MenuController extends Controller
 
     public function edit($id)
     {
+        
         // $menu = menu::find($id);
         // return view('manejer.editmenu', ['menu' => $menu]);
-    
         $menu = DB::table('menus')->where('id', $id)->get();
         
         return view('manejer/editmenu', compact('menu'));
@@ -70,14 +69,8 @@ class MenuController extends Controller
     }
     public function update(Request $request, $id)
     {
-        // $menu = menu::find($id);
-        // $menu->update($request->all());
-        // activity()->log('Mengedit Menu');
-        // return redirect()->route('menu.index');
-    
-        // dd($request->foto);
-
-        DB::table('menus')->where('id', $id)->update([
+        // dd($request);
+        $menu = DB::table('menus')->where('id', $id)->update([
             'nama_menu' => $request->nama_menu,
             'harga' => $request->harga,
             'foto' => $request->foto

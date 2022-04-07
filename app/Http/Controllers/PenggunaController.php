@@ -30,6 +30,14 @@ class PenggunaController extends Controller
 
     public function create(Request $request)
     {
+        $request->validate([
+            'name' =>'required',
+            'no_tlp' =>'required',
+            'level' =>'required',
+            'status' =>'required',
+            'email' =>'required',
+            'password' =>'required',
+        ]);
         
         pengguna::create([
             'name'=> $request['name'],
@@ -142,96 +150,20 @@ class PenggunaController extends Controller
 
     public function edit($id_pengguna)
     {
-    
-        // $pengguna = pengguna::find($id_pengguna);
-        // $pengguna = DB::table('pengguna')
-        // ->leftJoin('users', 'pengguna.id_pengguna', '=', 'users.id')
-        // ->leftJoin('kasir','pengguna.id_pengguna','=','kasir.id_kasir')
-        // ->leftJoin('manejer','pengguna.id_pengguna','=','manejer.id_manejer')
-        // ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
-        // ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
-        // ->where('pengguna.id_pengguna',)
-        // ->select('pengguna.*', 'users.*','kasir.*','manejer.*','model_has_roles.model_id')
-
-        // ->get();
-
         $pengguna = DB::table('pengguna')->where('id_pengguna', $id_pengguna)->get();
-        
-        
         return view('admin/edit', compact('pengguna'));
-        // return view('admin/edit');
-
-        }
+    }
 
 
     public function update(Request $request, $id)
     {
-//         $request->validate([
-//             'name'=>'required',
-//             'no_tlp'=>'required',
-//             'level'=>'required',
-//             'status'=>'required',
-//             'email'=>'required',
-//             'password' => ['required', 'string', 'min:4', 'confirmed'],
-//         ]);
-//         DB::table('pengguna')->where('id_pengguna', $id )->update([
-//             'name' => $request->name,
-//             'no_tlp' => $request->no_tlp,
-//             'level' => $request->level,
-//             'status' => $request->status,
-//             'email' => $request->email,
-//             'password' => $request->password,
-//             'created_at' => date("Y-m-d H:i:s"),
-//             'updated_at' => date("Y-m-d H:i:s")
-//         ]);
-//         DB::table('users')->where('name',$id)->update([
-//             'name'=>$request->name,
-//             'password'=>$request->password,
-//             'email' => $request->email,
-//             'level'=>$request->level,
-//             'created_at' => date("Y-m-d H:i:s"),
-//             'updated_at' => date("Y-m-d H:i:s")
-//         ]);
-
-//         if ($request['level']=='manejer') {
-//                 DB::table('manejer')->where('id_manejer',$id)->update([
-//                     'name' => $request->name,
-//                     'notlp' => $request->no_tlp,
-//                     'level' => $request->level,
-//                     'status' => $request->status,
-//                     'email' => $request->email,
-//                     'password' => $request->password,
-//                     'created_at' => date("Y-m-d H:i:s"),
-//                     'updated_at' => date("Y-m-d H:i:s")
-//                 ]);
-
-//         }
-//         elseif ($request['level']=='kasir') {
-//             DB::table('kasir')->where('id_kasir',$id)->update([
-//                     'name'=> $request['name'],
-//                     'notlp'=>$request['no_tlp'],
-//                     'level'=>$request['level'],
-//                     'status'=>$request['status'],
-//                     'email'=>$request['email'],
-//                     'password'=>$request['password'],
-//                     'created_at' => date("Y-m-d H:i:s"),
-//                     'updated_at' => date("Y-m-d H:i:s")
-//             ]);
-
-        // DB::table
-
-
-        // dd($request->id);
-
         DB::table('pengguna')->where('id_pengguna', $request->id)->update([
-            'level' => $request->level
+            'status' => $request->status
+            
         ]);
-
+        activity()->log('Mengedit/Mengubah User');
         return redirect()->route('index');  
-
-
-
-        }
+    }
 
 
 

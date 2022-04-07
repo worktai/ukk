@@ -27,35 +27,35 @@
 
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Nama</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Nomor Telepon</label>
-                                    <input type="number" class="form-control" id="exampleInputEmail1" name="no_tlp" aria-describedby="emailHelp">
+                                    <label for="exampleInputEmail1" class="form-label">No Telepon</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" name="no_tlp" aria-describedby="emailHelp" required>
                                 </div>
-                                <strong for="">Level pegawai</strong>
+                                <strong for="">Level User</strong>
                                 <div class="input-group mb-3">
-                                    <select class="form-control" name="level" id="level">
-                                        <option value="---">level</option>
+                                    <select class="form-control" name="level" id="level" required>
+                                        {{-- <option value="---">level</option> --}}
                                         <option value="manejer">manager</option>
                                         <option value="kasir">kasir</option>
                                     </select>
                                 </div>
-                                <strong for="">Status pegawai</strong>
+                                <strong for="">Status User</strong>
                                 <div class="input-group mb-3">
-                                    <select class="form-control" name="status" id="status">
+                                    <select class="form-control" name="status" id="status" required>
                                         <option value="aktif">aktif</option>
                                         <option value="nonaktif">nonaktif</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">email</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
+                                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" required>
                                 </div>
 
                         </div>

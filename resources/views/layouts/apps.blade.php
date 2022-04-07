@@ -29,8 +29,8 @@
 </head>
 <body style="font-family: arial;">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color : #6c757d">
+            <div class="container bg-secondary">
                 {{-- <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
                 </a> --}}
@@ -100,7 +100,7 @@
                         @endif
                         @else
 
-                        <a class="text-dark" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <a class="text-light" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>

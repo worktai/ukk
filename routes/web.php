@@ -29,12 +29,15 @@ Route::middleware('role:admin')->get('pengguna/edit/{id}', 'PenggunaController@e
 Route::middleware('role:admin')->post('pengguna/edit/{id}', 'PenggunaController@update');
 
 
+
+
 // HALAMAN KASIR
 Route::middleware('role:kasir')->get('/catatan_transaksi', 'KasirController@show')->name('catatan_transaksi');
 
 // KASIR -> FOLDER PELANGGAN -> HALAMAN ORDER DAN TRANSAKSI:
 Route::middleware('role:kasir')->resource('dpesan','KasirController');
 Route::middleware('role:kasir')->post('pelanggan.index', 'KasirController@simpan')->name('simpan');
+// Route::middleware('role:kasir')->get('', 'KasirController@')->name('simpan');
 
 
 

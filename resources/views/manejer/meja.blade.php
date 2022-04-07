@@ -16,14 +16,14 @@
 
                     <table class="table table-bordered">
                         <tr class="text-primary">
-                            <th>Id</th>
+                            {{-- <th>Id</th> --}}
                             <th>No Meja</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                         @foreach($datameja as $meja)
                         <tr>
-                            <td>{{ $meja->meja_id }}</td>
+                            {{-- <td>{{ $meja->meja_id }}</td> --}}
                             <td>{{ $meja->no_meja }}</td>
                             <td>
                                 <div class="badge {{ ($meja->status == 'Tersedia') ? 'badge-success' : 'badge-danger' }}">
@@ -66,18 +66,18 @@
                     <!-- <input type="hidden" class="form-control" name="meja_id" id="meja"> -->
                     <div class="form-group">
                         <label for="no_meja">No Meja</label>
-                        <input type="number" class="form-control" name="no_meja" id="no_meja" placeholder="masukkan nomor meja..">
+                        <input type="number" class="form-control" name="no_meja" id="no_meja" placeholder="masukkan nomor meja.." required>
                         <span class="text-success" style="display: none">nomor meja bisa digunakan</span>
                         <span class="text-danger" style="display: none">nomor meja Sudah ada</span>
 
                     </div>
                     <p class="m-0">Status</p>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="status" id="status1" value="Tidak Tersedia">
+                        <input class="form-check-input" type="radio" name="status" id="status1" value="Tidak Tersedia" required>
                         <label class="form-check-label p-0" for="status1">Tidak Tersedia</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="status" id="status2" value="Tersedia">
+                        <input class="form-check-input" type="radio" name="status" id="status2" value="Tersedia" required>
                         <label class="form-check-label p-0" for="status2">Tersedia</label>
                     </div> <br>
                     <span class="text-danger" style="display: none">status harus dipilih</span>

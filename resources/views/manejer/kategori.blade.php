@@ -54,10 +54,10 @@
                 <form action="{{route('kategori.store')}}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <input type="hidden" id="idkategori">
+                        <input type="hidden" id="idkategori" required>
                         <div class="form-group">
                             <label for="nama_kategori">Nama Kategori</label>
-                            <input type="text" class="form-control" name="nama_kategori" id="nama_kategori" placeholder="masukkan nama kategori.. ">
+                            <input type="text" class="form-control" name="nama_kategori" id="nama_kategori" placeholder="masukkan nama kategori.. " required>
                             <span class="text-danger errornama" style="display: none">Nama Kategori harus diisi</span>
                         </div>
                     </div>

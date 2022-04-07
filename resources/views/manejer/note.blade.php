@@ -18,11 +18,11 @@
                     <div class="form-group row">
                         <label for="from" class="col-form-label col-sm-2">Dari Tanggal</label>
                         <div class="col-sm-3">
-                            <input type="date" class="form-control input-sm w-100" id="from" name="from">
+                            <input type="date" class="form-control input-sm w-100" id="from" name="from" required>
                         </div>
                         <label for="to" class="col-form-label col-sm-2">Sampai Tanggal</label>
                         <div class="col-sm-3">
-                            <input type="date" class="form-control input-sm w-100" id="to" name="to">
+                            <input type="date" class="form-control input-sm w-100" id="to" name="to" required>
                         </div>
                         <div class="col-sm-2">
                             <button type="submit" class="btn btn-secondary text-light mb-1">Cari</button>
@@ -37,20 +37,23 @@
                     <div class="col-4">
                         <form action="{{route('tgltertentu')}}" method="get">
                             @csrf
-                            <input type="date" placeholder="Cari Tanggal" name="search" class="form-control w-75 d-inline">
+                            <input type="date" placeholder="Cari Tanggal" name="search" class="form-control w-75 d-inline" required>
                             <button type="submit" class="btn btn-secondary text-light">Cari</button>
                         </form>
                     </div>
                     <div class="col-4">
                         <form action="{{route('laporantransaksi')}}" method="get">
                             @csrf
-                            <input type="text" placeholder="Cari Nama Pegawai" name="search" class="form-control w-75 d-inline">
+                            <input type="text" placeholder="Cari Nama Pegawai" name="search" class="form-control w-75 d-inline" required>
                             <button type="submit" class="btn btn-secondary text-light mb-1">Cari</button>
                         </form>
                     </div>
                 </div>
             </div>
             <hr>
+            <div class="card-header">
+
+            </div>
             <div class="container-fluid">
                 <div class="row">
                     <table class="table table-hover table-bordered">
@@ -77,6 +80,14 @@
                         </tr>
                         @endforeach
                     </table>
+                    <div class="col">
+                        <h4>Hari ini Rp. </h4>
+                        <hr>
+                        <h4>Bulan ini Rp. </h4>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn btn-success" type="submit" value="Print Semua Pemasukan">
+                    </div>
                 </div>
 
             </div>

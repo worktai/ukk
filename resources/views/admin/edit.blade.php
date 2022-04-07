@@ -16,31 +16,33 @@
 
             <div class="row">
                 <div class="col-xs-6 col-sm-6 col-md-6">
-                    Nama Pengguna <input class="form-control" type="text" name="nama_pengguna" required="required" readonly value="{{ $p->name }}">
+                    Nama Pengguna <input class="form-control" type="text" name="nama_pengguna" required="required" readonly value="{{ $p->name }}" required>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6">
-                    No Telepon <input class="form-control" type="number" name="no_telp" required="required"  readonly value="{{ $p->no_tlp }}"> 
+                    No Telepon <input class="form-control" type="number" name="no_telp" required="required"  readonly value="{{ $p->no_tlp }}" required> 
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-xs-6 col-sm-6 col-md-6">
                     Level<select name="level" id="tipe_kamar" class="form-control" >
-                        <option selected class="form-select form-check disabled text-muted" aria-label="disabled select example" disabled>Pilih salah satu Level</option>
-                        <option value="kasir">Kasir</option>
-                        <option value="manejer">Manajer</option>
+                        <option selected class="form-select form-check disabled text-muted" aria-label="disabled select example" readonly value="{{ $p->level }}" required>{{ $p->level }}</option>
+                        {{-- <option value="kasir">Kasir</option>
+                        <option value="manejer">Manajer</option> --}}
                     </select>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6">
-                    Status<select name="status" id="tipe_kamar" class="form-control" >
-                    <option selected class="form-select form-check text-muted" aria-label="disabled select example" disabled value="{{ $p->status }}">{{ $p->status }}</option>
+                    Status<select name="status" id="tipe_kamar" class="form-control" required>
+                    <option selected class="form-select form-check text-muted" aria-label="disabled select example" disabled>Pilih status</option>
+                    <option value="aktif">aktif</option>
+                    <option value="nonaktif">nonaktif</option>
                     </select>  
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-xs-6 col-sm-6 col-md-6">
-                    Email <input class="form-control" type="email" name="email" required="required"  readonly value="{{ $p->email }}">    
+                    Email <input class="form-control" type="email" name="email" required="required"  readonly value="{{ $p->email }}" required>    
                 </div>
 
                 <div class="modal-footer">

@@ -46,7 +46,7 @@ class KasirController extends Controller
     public function store(Request $request)
     {
         //  dd($request);
-
+        $pegawai= auth()->user()->name;
         // pesanan::create($request->all());
         Pesanan::create([
             'nama_pemesan'=>$request['nama_pemesan'],
@@ -57,7 +57,7 @@ class KasirController extends Controller
             'total_beli'=>$request['total_beli'],
             'total_bayar'=>$request['total_bayar'],
             'kembalian'=>$request['kembalian'],
-            'nama_pegawai'=>$request['nama_pegawai'],
+            'nama_pegawai'=>$pegawai,
         ]);
         meja::find($request->meja_id)->update(['status' => 'Tidak Tersedia']);
         activity()->log('Melakukan Transaksi');
